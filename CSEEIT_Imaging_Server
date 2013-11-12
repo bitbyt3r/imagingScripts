@@ -1,0 +1,61 @@
+#!/bin/bash
+#
+# This script was written to monitor the currently running udp cast sessions of the CSEEIT Imaging System.
+#
+
+stop() {
+   location=$1
+   [ -z $location ] && echo "Please include a location/session name." && exit 1
+   if [ -f /var/lock/subsys/udpcast.$location ]; then
+      echo -n $"Stopping udpcast daemons: "
+      for process in `cat /var/lock/subsys/udpcast.$location`
+         do
+            kill $process
+         done
+      rm -f /var/lock/subsys/udpcast.$location
+      rm -f /var/lock/subsys/udpcast.$location.return
+   fi
+   echo
+   return $RETVAL
+}
+
+monitor() {
+   interval=$1   #How often to check the processes (in seconds).
+   [ -z $interval ] && echo "Please include the interval (in seconds)." && exit 1
+
+   while :; do
+      echo "=============== CSEEIT Imaging System Sessions ==============="
+      date +"%F %T"
+      for session in `ls -1 /var/lock/subsys/udpcast.*`; do
+         if [[ $session != *".return" && $session =~ .*"udpcast."(.*) ]]; then
+            echo "Checking the status of session: ${BASH_REMATCH[1]}"
+            for pid in `cat $session`; do
+               if [[ `ps -p $pid -o comm --no-heading` == *"udp-sender"* ]]; then
+                  echo "   pid: $pid command: `ps -p $pid -o comm --no-heading` is still running"
+#                  echo "      full command: `ps -p $pid -o command --no-heading`"
+               else
+                  echo "   pid: $pid is no longer in use"
+               fi
+            done
+         fi
+      done
+      [ $interval == 0 ] && break
+      sleep $interval
+   done
+   exit 0
+}
+
+case "$1" in
+monitor)
+   monitor $2
+   ;;
+status)
+   monitor 0
+   ;;
+stop)
+   stop $2
+   ;;
+*)
+   echo $"Usage: $0 {monitor|status|stop}"
+   exit 1
+esac

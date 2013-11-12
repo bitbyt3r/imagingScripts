@@ -1,0 +1,197 @@
+#!/bin/bash
+#
+# This script is written in the Bash language.
+#
+#TODO:
+# -Consider breaking the code into functions.
+# -Review the code to check for the next available port.
+# -Create/update comments.
+# -Remove unnecessary variables/clean up variable usage.
+#
+#Desired enhancements:
+# -Allow the imaging of a single partition.
+# -Improve the ability to clean up orphaned processes.
+# -Display a list of the available images.
+
+#filename="$2"
+location="$2"
+
+#home=/var/images/Dell_OptiPlex_755_CSEE_Labs_20100902
+#home=/var/images
+home=/var/images/Clonezilla
+logs=/var/images/Clonezilla/$location/logs
+port_min=9500
+port_max=9549
+port_next=0
+port_available=0
+number_of_systems=1
+max_wait=60
+
+RETVAL=0
+
+#
+# See how we were called.
+#
+
+start() {
+   if [ ! -f /var/lock/subsys/udpcast.$location ]; then
+      [ ! -d $logs ] && mkdir $logs
+      echo -n "number_of_systems: "
+      read number_of_systems
+      return="sfdisk info start\n`cat $home/$location/sda-pt.sf`\nsfdisk info end"
+	#Test
+	echo "SDA_PT_SF"
+	echo "`cat $home/$location/sda-pt.sf`"
+
+      port_available=0
+      while [ $port_available -eq 0 ]; do
+         if [ $port_next -ge $port_min -a $port_next -lt $port_max ]; then
+            for port in `netstat -anu | awk '{print $4}' | awk -F: '{print $2}'`; do
+               if [ $port -ne $port_next -a $port -ne `expr $port_next + 1` ]; then
+                  port_available=$port_next
+               else
+                  port_available=0
+                  (( port_next++ ))
+                  break
+               fi
+            done
+         else
+            port_next=$port_min
+         fi
+      done
+      udp-sender --nopointopoint --nokbd --full-duplex --min-receivers $number_of_systems -f $home/$location/sda-mbr --portbase $port_available --ttl 2 --log $logs/udp-sender.mbr.log --bw-period 1 > $logs/udp-sender.mbr.stdout 2> $logs/udp-sender.mbr.stderr &
+      echo "$!" > /var/lock/subsys/udpcast.$location
+      return="$return\nmbr $port_available"
+      sleep 2
+      if [ -f $home/$location/sda-hidden-data-after-mbr ]; then
+         port_available=0
+         while [ $port_available -eq 0 ]; do
+            if [ $port_next -ge $port_min -a $port_next -lt $port_max ]; then
+               for port in `netstat -anu | awk '{print $4}' | awk -F: '{print $2}'`; do
+                  if [ $port -ne $port_next -a $port -ne `expr $port_next + 1` ]; then
+                     port_available=$port_next
+                  else
+                     port_available=0
+                     (( port_next++ ))
+                     break
+                  fi
+               done
+            else
+               port_next=$port_min
+            fi
+         done
+         udp-sender --nopointopoint --nokbd --full-duplex --min-receivers $number_of_systems --max-wait $max_wait -f $home/$location/sda-hidden-data-after-mbr --portbase $port_available --ttl 2 --log $logs/udp-sender.hidden_after_mbr.log --bw-period 1 > $logs/udp-sender.hidden_after_mbr.stdout 2> $logs/udp-sender.hidden_after_mbr.stderr &
+         echo "$!" >> /var/lock/subsys/udpcast.$location
+         return="$return hidden_after_mbr $port_available"
+         sleep 1
+      fi
+      for part in `cat $home/$location/parts`; do
+         if [ -f $home/$location/$part.ntfs-img ]; then
+            port_available=0
+            while [ $port_available -eq 0 ]; do
+               if [ $port_next -ge $port_min -a $port_next -lt $port_max ]; then
+                  for port in `netstat -anu | awk '{print $4}' | awk -F: '{print $2}'`; do
+                     if [ $port -ne $port_next -a $port -ne `expr $port_next + 1` ]; then
+                        port_available=$port_next
+                     else
+                        port_available=0
+                        (( port_next++ ))
+                        break
+                     fi
+                  done
+               else
+                  port_next=$port_min
+               fi
+            done
+            udp-sender --nopointopoint --nokbd --full-duplex --min-receivers $number_of_systems --max-wait $max_wait -f $home/$location/$part.ntfs-img --portbase $port_available --ttl 2 --log $logs/udp-sender.$part.log --bw-period 1 > $logs/udp-sender.$part.stdout 2> $logs/udp-sender.$part.stderr &
+            echo "$!" >> /var/lock/subsys/udpcast.$location
+            return="$return $part ntfsclone $port_available"
+            sleep 1
+         else
+            port_available=0
+            while [ $port_available -eq 0 ]; do
+               if [ $port_next -ge $port_min -a $port_next -lt $port_max ]; then
+                  for port in `netstat -anu | awk '{print $4}' | awk -F: '{print $2}'`; do
+                     if [ $port -ne $port_next -a $port -ne `expr $port_next + 1` ]; then
+                        port_available=$port_next
+                     else
+                        port_available=0
+                        (( port_next++ ))
+                        break
+                     fi
+                  done
+               else
+                  port_next=$port_min
+               fi
+            done
+            udp-sender --nopointopoint --nokbd --full-duplex --min-receivers $number_of_systems --max-wait $max_wait -f $home/$location/$part --portbase $port_available --ttl 2 --log $logs/udp-sender.$part.log --bw-period 1 > $logs/udp-sender.$part.stdout 2> $logs/udp-sender.$part.stderr &
+            echo "$!" >> /var/lock/subsys/udpcast.$location
+            return="$return $part partimage $port_available"
+            sleep 1
+         fi
+      done
+      files=`ls $home/$location | grep swappt`
+      for file in $files; do
+         part=`echo $file | awk -F- '{print $2}' | awk -F. '{print $1}'`
+         uuid=`grep UUID $home/$location/$file | awk -F= '{print $2}'`
+         label=`grep LABEL $home/$location/$file | awk -F= '{print $2}'`
+         return="$return $part mkswap $uuid $label"
+      done
+      echo -e "$return" > /var/lock/subsys/udpcast.$location.return
+   else
+      return="`cat /var/lock/subsys/udpcast.$location.return`"
+   fi
+   echo -e "$return"
+#        # Check if it is already running
+#        if [ ! -f /var/lock/subsys/udpcast.$location ]; then
+#            echo -n $"Starting udpcast daemon for $location: "
+#            for (( i=0 ; $i < ${#images[*]} ; $((i++)) ))
+#            do
+##               nohup /usr/local/sbin/udpcast $home${images[$i]} ${portbase[$i]} $logs${logfile[$i]} > /dev/null 2>&1 &
+#                nohup /usr/local/sbin/udpcast $home${images[$i]} ${portbase[$i]} /dev/null > /dev/null 2>&1 &
+#            done
+#            RETVAL=$?
+#            [ $RETVAL -eq 0 ] && touch /var/lock/subsys/udpcast.$location
+#            echo
+#        fi
+   return $RETVAL
+}
+
+stop() {
+   if [ -f /var/lock/subsys/udpcast.$location ]; then
+      echo -n $"Stopping udpcast daemons: "
+      for process in `cat /var/lock/subsys/udpcast.$location`
+         do
+            kill $process
+         done
+      rm -f /var/lock/subsys/udpcast.$location
+      rm -f /var/lock/subsys/udpcast.$location.return
+   fi
+   echo
+   return $RETVAL
+}
+
+
+restart() {
+        stop
+        start
+}
+
+case "$1" in
+start)
+        start
+        ;;
+stop)
+        stop
+        ;;
+restart)
+        restart
+        ;;
+*)
+        echo $"Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit $RETVAL
+
+#/usr/sbin/udp-sender.test01 --nopointopoint --nokbd --max-wait <seconds_to_wait_before_forcing> --daemon-mode -f <desired_file> --portbase <port_number> > <log_file> 2> <error_log_file> &

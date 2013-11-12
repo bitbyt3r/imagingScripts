@@ -1,0 +1,171 @@
+#!/usr/bin/expect -f
+#
+# This script is written in the Expect and Tcl languages. It utilizes ssh, bash, sfdisk, mkswap, udp-receiver, gzip, dd, ntfsclone, and partimage.
+#
+#TODO:
+# -Collect and reuse the ssh processes spawn_id so that communication can be maintained.
+# -Ask the user for the necessary information.
+# -Allow the selection of destination device.
+# -Check the destination's space (chs or blocks).
+# -Consider changing the imaging code from if/elseif statements to a switch case.
+# -Create/update comments.
+# -Remove unnecessary variables/clean up variable usage.
+#
+#Desired enhancements:
+# -Allow the imaging of a single partition.
+# -Allow the use of bzip.
+# -Display a list of the available images.
+#  -On the list of images, make them selectable by number and display if a session is present and how many connections are available vs. total.
+# -Add error handling.
+# -Replace 'spawn' with 'exec' where possible. The first attempt to do this resulted in failure, see the desired enhancement "Remove the necessity of bash."
+# -Remove the necessity of bash. Though this is not such a big deal, as vitually every system has bash, it would be nice to have less cascading processes. Using 'exec' redirection has been looked into, but is not as powerful as bash redirection. Mainly, it does not allow for the redirection of stderr from each process, only from all. Also, and the main reason that bash is still used is because stdout of the commands was not being displayed properly, if at all. Patially working options:
+#  -'exec -- udp-receiver --portbase $additional1 | gunzip -c - | partimage -b restore /dev/$part_number stdin >& /tmp/stderr_$part_number'
+#  -'exec -- udp-receiver --portbase $additional1 | gunzip -c - | ntfsclone -r -O /dev/$part_number - 2> /tmp/stderr_$part_number'
+
+#set system [ lrange $argv 0 0 ]
+set system "rhesus.cs.umbc.edu"
+#set user [ lrange $argv 1 1 ]
+set user "root"
+#set command [ lrange $argv 2 end ]
+#set command "/var/images/CSEEIT_Imaging_Server_Transmit start Dell_Optiplex_755_OITBackup_20120613_x64"
+set command "/var/images/CSEEIT_Imaging_Server_Transmit start "
+append command [lindex $argv 0]
+
+
+set timeout -1
+match_max 10000
+
+set disk "sda"
+set partitions {}
+
+#puts -nonewline "\nEnter the name or IP address of the server: "
+#expect_user -re ".*\n" { set system $expect_out(0,string) }
+#puts -nonewline "\nEnter the user to use when connecting to $system: "
+#expect_user -re ".*\n" { set user $expect_out(0,string) }
+
+#Start the ssh session.
+spawn ssh $user@$system
+set spawn_id_ssh $spawn_id
+#Give the user direct access to the ssh process until they login or login fails.
+interact {
+   -o -re "Last login:.*$" { puts -nonewline "$interact_out(0,string)" ; return }
+   "Are you sure you want to continue connecting (yes/no)?" { send "yes\r" }
+   eof { puts "Login failed or ssh did not output \"Last login:\". The process has terminated." ; exit }
+}
+#Wait for the prompt to appear before proceeding, then pass the command to the process.
+expect -timeout 2 -re ".+@.+#"
+send "$command\r"
+
+#Collect and parse the string returned from the command that was run on the server, containing information about the partitions and udp-cast sessions. If the server asks for additional information, pass that request to the user.
+expect {
+   -re "number_of_systems: " {
+      expect_user -re ".*\n"
+      send "$expect_out(0,string)"
+      exp_continue
+   }
+   -re "sfdisk info start.+sfdisk info end" { set sfdisk_info $expect_out(0,string) ; exp_continue }
+   -re "mbr.+\n" { set temp $expect_out(0,string) }
+}
+while { [scan $temp %s%n word length] == 2 } {
+   switch -regexp $word {
+      "^mbr" {
+         set temp [string range $temp $length end]
+         scan $temp "%s%n" mbr_port length
+         set temp [string range $temp $length end]
+      }
+      "hidden_after_mbr" {
+         set temp [string range $temp $length end]
+         scan $temp "%s%n" hidden_after_mbr_port length
+         set temp [string range $temp $length end]
+      }
+      "sda." {
+         set temp [string range $temp $length end]
+         scan $temp "%s%n" temp_type length
+         if { $temp_type eq "mkswap" } {
+            scan $temp "%s %s %s%n" temp_type temp_uuid temp_label length
+            set partitions [linsert $partitions end "$word $temp_type $temp_uuid $temp_label"]
+         } else {
+            scan $temp "%s %s%n" temp_type temp_port length
+            set partitions [linsert $partitions end "$word $temp_type $temp_port"]
+         }
+         set temp [string range $temp $length end]
+      }
+      default { set temp [string range $temp $length end] }
+   }
+}
+
+send "exit\r"
+
+set swaps [open "/proc/swaps"]
+while { [gets $swaps swap] >= 0 } {
+   scan $swap "%s" swap
+   if { [string match "/dev/$disk*" $swap] } { exec swapoff $swap }
+}
+close $swaps
+
+set mounts [open "/proc/mounts"]
+while { [gets $mounts device] >= 0 } {
+   scan $device "%s" device
+   if { [string match "/dev/$disk*" $device] } { exec umount $device }
+}
+close $mounts
+
+#Perform the actual imaging process.
+#Because the sfdisk dump data is being transmitted via the console over the ssh connection, it is not exactly as we need it. In particular, the carriage returns must be removed from the end of each line in order for sfdisk to accept the input.
+set sfdisk_info [string range $sfdisk_info [expr [string first \n $sfdisk_info] + 1] [expr [string last \n $sfdisk_info] - 1] ]
+while { [ string first \r $sfdisk_info ] != -1 } {
+   set sfdisk_info [string replace $sfdisk_info [string first \r $sfdisk_info] [string first \r $sfdisk_info] ]
+}
+#Because sfdisk only accepts the data from stdin, we would either have to write the data to a file and then call the command, or we can launch the process, open a connection to stdin, and write the data. Below we use the latter. Also, if data is sent to stderr while the process is running (which sfdisk is going to do), the Tcl script would be stopped and would pass the error. To deal with that, we added "2>@1" to redirect the stderr to stdout.
+
+#Test
+puts "SFDISK_INFO"
+puts $sfdisk_info
+puts "DISK"
+puts $disk
+
+#The force was added for some cylinder issues - REMOVE IF NOT NEEDED!
+set sfdisk [ open "| sfdisk --force /dev/$disk 2>@1" w ]
+
+#Back to the original stuff
+puts $sfdisk $sfdisk_info
+close $sfdisk
+spawn bash -c "udp-receiver --portbase $mbr_port --ttl 2 --log /tmp/udp-receiver_log 2> /tmp/udp-receiver_stderr | dd of=/dev/$disk"
+expect eof
+spawn bash -c "udp-receiver --portbase $hidden_after_mbr_port --ttl 2 2>> /tmp/udp-receiver_stderr | dd of=/dev/$disk bs=512 seek=1"
+expect eof
+exec sfdisk -R /dev/$disk
+foreach part $partitions {
+   scan $part "%s %s %s %s" part_number part_type additional1 additional2
+   if { $part_type eq "partimage" } {
+      spawn bash -c "udp-receiver --portbase $additional1 --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | partimage -b restore /dev/$part_number stdin"
+      expect eof
+   } elseif { $part_type eq "ntfsclone" } {
+      spawn bash -c "udp-receiver --portbase $additional1 --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O /dev/$part_number -"
+      expect eof
+   } elseif { $part_type eq "mkswap" } {
+      #If the fist and last characters of the UUID and label are double quotes and there is atleast 1 character between them, remove the first and last character. One set of double quotes is expected, but this was written to handle the unexpected. Please note that the label of the swap space may contain double quote characters, which if passed to the command, will be included. If two sets of double quotes exist and you would like to remove them both, change 'string range $variable first last' to 'string trim $variable "\""'. That will remove all leading and trailing double quoted characters.
+      if { [ regexp {^\".+\"$} $additional1 ] } { set additional1 [ string range $additional1 1 end-1 ] }
+      if { [ regexp {^\".+\"$} $additional2 ] } { set additional2 [ string range $additional2 1 end-1 ] }
+      exec mkswap -U $additional1 -L $additional2 /dev/$part_number
+   }
+}
+
+exit
+
+#To restore the MBR:
+#dd if=<backup_data> of=<destination_disk>
+#udp-receiver --portbase <port_number> --pipe "dd of=<destination_disk>"
+#To resetore the hidden data after the MBR:
+#dd if=<backup_data> of=<destination_disk> bs=512 seek=1
+#udp-receiver --portbase <port_number> --pipe "dd of=<destination_disk> bs=512 seek=1"
+#To restore the partition table: (which is stored in the MBR, therefore, was restored with the MBR)
+#sfdisk <destination_disk> < <backup_data>
+#To restore ext2/ext3 partitions: (be sure to save the partitions without the MBR)
+#partimage -b restore <destination_partition> <backup_data>
+#udp-receiver --portbase <port_number> --pipe "gunzip -c -" | partimage -b restore <destination_partition> stdin
+#To restore a NTFS partition: (if the image file is not compressed, ignore gunzip and replace - with <backup_data>)
+#gunzip -c <backup_data> | ntfsclone -r -O <destination_partition> -
+#udp-receiver --portbase <port_number> --pipe "gunzip -c -" | ntfsclone -r -O <destination_partition> -
+#To create the swap partition:
+#mkswap -L "<label_of_swap>" -U "<UUID_of_swap>" <destination_partition>
