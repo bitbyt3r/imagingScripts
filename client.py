@@ -1,15 +1,9 @@
 #!/usr/bin/python
-import xmlrpclib
+import bjsonrpc
+from bjsonrpc.handlers import BaseHandler
+from SRPSocket import SRPSocket
+import time
 
-# get username and password
-# connect and authenticate to server
-# get desired partition map
-# get list of partitions to copy
-# format partitions if necessary
-# wait for server
-# spawn udp-cast session for each partition
-
-def main():
-  p = xmlrpclib.ServerProxy('http://test:foo@localhost:8080')
-  print p.ping()
-main()
+socket, key = SRPSocket.SRPSocket('localhost', 1338, 'mark', 'wsxzaq')
+c = bjsonrpc.connection.Connection(socket, handler_factory=BaseHandler)
+print c.call.echo("foo")
