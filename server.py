@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 import os
@@ -8,6 +8,8 @@ import hmac
 import uuid
 import time
 from datetime import datetime
+import re
+import ConfigParser
 
 import ssl
 import socket
@@ -19,11 +21,13 @@ from xmlrpclib import Fault
 
 
 # Configure below
-LISTEN_HOST = '127.0.0.1' # You should not use '' here, unless you have a real FQDN.
+LISTEN_HOST = 'rhesus.cs.umbc.edu' # You should not use '' here, unless you have a real FQDN.
 LISTEN_PORT = 2048
 
 KEYFILE  = 'key.pem'  # Replace with your PEM formatted key file
 CERTFILE = 'cert.pem'  # Replace with your PEM formatted certificate file
+
+CONFIG_FILE = './images.conf'
 
 # 2011/01/01 in UTC
 EPOCH = 1293840000
@@ -170,7 +174,19 @@ class XMLRPCHandler:
         self.users       = {"test": "test", "foo": "bar"} # replace with your own authentication
         self.sessions    = dict()
         self.session_key = os.urandom(32)
-
+        self.images, self.config = self._getConfig(CONFIG_FILE)
+        self.currentImage = None
+        self.clients = []
+        if 'currentimage' in self.config:
+          for i in self.images:
+            if self.config['currentimage'] == i['name']:
+              self.currentImage = i
+        try:
+          self.users.update({self.config['username']:self.config['password']})
+        except:
+          print "There is no username and password defined in the configuration file."
+        self.partitions = self.partList()
+          
     def _find_session_by_username(self, username):
         """
         Try to find a valid session by username.
@@ -256,46 +272,124 @@ class XMLRPCHandler:
                 return session_id
 
         raise Fault("unknown username or password", "Please check your username and password")
+      
+    def _getConfig(self, configFile):
+      images = {}
+      config = ConfigParser.ConfigParser()
+      if not(os.path.isfile(configFile)):
+        sys.exit("The config file "+configFile+" is not a file. That is unfortunate.")
+      if config.read(configFile):
+        sections = {}
+        for i in config.sections():
+          sections[i] = config.items(i)
+      else:
+        sys.exit("Config File is not valid.")
+      if "main" in sections.keys():
+        options = {}
+        for i in sections["main"]:
+          options[i[0]] = i[1]
+      else:
+        options = None
+        print "No global options found. Strange. I might explode."
+      for i in sections.keys():
+        if not i == "main":
+          images[i] = {}
+          for j in sections[i]:
+            images[i][j[0]] = j[1]
+          if not "section" in images[i].keys():
+            images[i]["section"] = i
+      if options:
+        options = self._replaceKeys(options, {})
+      images = [self._replaceKeys(images[x], options) for x in images]
+      return images, options
+      
+    def _replaceKeys(self, image, main):
+      if main:
+        for i in main.keys():
+          if not i in image.keys():
+            image[i] = main[i]
+      madeProgress = True
+      keysWithSubs = self._remainingSubs(image)
+      while keysWithSubs and madeProgress:
+        madeProgress = False
+        for j in keysWithSubs.keys():
+          if not any(map(lambda x: x in keysWithSubs.keys(), keysWithSubs[j])):
+            for k in keysWithSubs[j]:
+              if k in image.keys():
+                image[j] = re.sub("<"+k+">", image[k], image[j])
+                madeProgress = True
+        keysWithSubs = self._remainingSubs(image)
+      return image
 
+    def _remainingSubs(self, image):
+      keysWithSubs = {}
+      for i in image.keys():
+        if re.findall(".*<(.+?)>.*", image[i]):
+          keysWithSubs[i] = re.findall(".*<(.+?)>.*", image[i])
+      return keysWithSubs
+    
+    def partList(self, sid=None):
+      if not self.currentImage:
+        print "baz"
+        raise Fault("The server currently has no image selected", "Please select an image before continuing")
+      with open(self.currentImage['partitionfile'], "r") as partitionFile:
+        print "foo"
+        partLines = [x for x in partitionFile.readlines() if x[:4] == "/dev"]
+      print "bar"
+      print partLines
+      partitions = []
+      for i in partLines:
+        print "bash"
+        m = re.search('(/dev/sda(\d))\s:\sstart=\s*(\d+),\ssize=\s*(\d+),\sId=\s*(\d+|f),*\s*(bootable)?', i)
+        if m:
+          part = {}
+          part['path'] = m.group(1)
+          part['start'] = int(m.group(3))
+          part['size'] = int(m.group(4))
+          part['end'] = int(part['start'] + part['size'] - 1)
+          part['number'] = int(m.group(2))
+          part['type'] = m.group(5)
+          part['bootable'] = bool(m.group(6))
+          print partitions
+          partitions.append(part)
+        print partitions
+      print partitions
+      return partitions
+    
     @require_login
-    def hello(self, session_id, name):
-        """
-        Example method which requires a login
-        """
-        if not name:
-            raise Fault("unknown recipient", "I need someone to greet!")
-        return "Hello, %s!" % name
+    def getConfig(self, session_id):
+      return self.config
+      
+    @require_login
+    def registerClient(self, session_id):
+      self.clients.append(session_id)
+      
+    @require_login
+    def startUDPCast(self, session_id):
+      for i in self.partitions:
+        part = i['path'].split("/")[-1]
+        partFile = os.path.join(self.currentImage['basepath'], part+".ntfs-img")
+        udpsendArgs = ['--nopointopoint',
+                      '--nokbd',
+                      '--full-duplex',
+                      '--min-receivers',
+                      str(len(self.clients)),
+                      '--max-wait 30',
+                      '-f '+partFile,
+                      '--portbase '+str(self.currentImage['portbase']),
+                      '--ttl 2',
+                      '--log ./udp-sender.'+str(part)+'.log',
+                      '--bw-period 30',
+                      '> ./udp-sender.'+str(part)+'.stdout',
+                      '2> ./udp-sender.'+str(part)+'.stderr',]
+        print("udp-sender "+" ".join(udpsendArgs))
+        os.system("udp-sender "+" ".join(udpsendArgs))
 
-def test():
-    server_address = (LISTEN_HOST, LISTEN_PORT)
-    server = SecureXMLRPCServer(server_address, SecureXMLRpcRequestHandler)
-    server.register_introspection_functions()
-    server.register_instance(XMLRPCHandler())
+server_address = (LISTEN_HOST, LISTEN_PORT)
+server = SecureXMLRPCServer(server_address, SecureXMLRpcRequestHandler)
+server.register_introspection_functions()
+server.register_instance(XMLRPCHandler())
 
-    sa = server.socket.getsockname()
-    print "Serving HTTPS on", sa[0], "port", sa[1]
-    server.serve_forever()
-
-if __name__ == "__main__":
-    test()
-
-    """ Testcode for a example client """
-    import time
-    def continue_xmlrpc_call(func, *args):
-        try:
-            ret = func(*args)
-            print ret
-            return ret
-        except xmlrpclib.Fault as e:
-            print e
-
-    server = xmlrpclib.ServerProxy("https://localhost:2048")
-
-    print server
-    print server.system.listMethods()
-    sid = continue_xmlrpc_call(server.login, "foo", "bar")
-    sid = continue_xmlrpc_call(server.login, "foo", "bar")
-    continue_xmlrpc_call(server.hello, sid, "World")
-    time.sleep(2)
-    continue_xmlrpc_call(server.hello, sid, "Invalid")
-    continue_xmlrpc_call(server.hello, "193", "")
+sa = server.socket.getsockname()
+print "Serving HTTPS on", sa[0], "port", sa[1]
+server.serve_forever()
