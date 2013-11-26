@@ -18,8 +18,6 @@ import BaseHTTPServer
 import SimpleHTTPServer
 import SimpleXMLRPCServer
 from xmlrpclib import Fault
-import threading
-import Queue
 
 
 # Configure below
@@ -180,18 +178,6 @@ class XMLRPCHandler:
         self.currentImage = None
         self.clients = []
         self.ready = False
-        def udpcaster():
-          while True:
-            proc = q.get()
-            print proc
-            os.system(proc)
-            q.task_done()
-            
-        self.q = Queue()
-        self.t = Thread(target=udpcaster)
-        t.daemon = True
-        t.start()
-        
         if 'currentimage' in self.config:
           for i in self.images:
             if self.config['currentimage'] == i['name']:
@@ -201,8 +187,6 @@ class XMLRPCHandler:
         except:
           print "There is no username and password defined in the configuration file."
         self.partitions = self.partList()
-        
-
           
     def _find_session_by_username(self, username):
         """
@@ -404,7 +388,8 @@ class XMLRPCHandler:
                       '--bw-period 30',
                       '> ./udp-sender.'+str(part)+'.stdout',
                       '2> ./udp-sender.'+str(part)+'.stderr',]
-        self.q.put("udp-sender "+" ".join(udpsendArgs))
+        print("udp-sender "+" ".join(udpsendArgs))
+        os.system("udp-sender "+" ".join(udpsendArgs))
 
 server_address = (LISTEN_HOST, LISTEN_PORT)
 server = SecureXMLRPCServer(server_address, SecureXMLRpcRequestHandler)
