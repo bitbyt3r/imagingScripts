@@ -1,10 +1,10 @@
 [main]
 # Server's port and hostname
 port = 2048
-host = forge.cs.umbc.edu
+host = 130.85.95.88
 
 # If a client matches multiple criteria, which batch is it in?
-clientselectpriority = ["IP", "NameMatch", "All"]
+clientselectpriority = IP, NameMatch, All
 
 # Sensible defaults for batches:
   
@@ -24,6 +24,8 @@ imagename = CE-W-Linux-9020-2013-08-26
 #partitionfile = <basepath>/sda-pt.sf
 partitionfile = ./sdb-pt.sf
 
+imageparts = sda3, sda7
+
 # The port to send the udpcast session on
 baseport = 9500
 
@@ -42,3 +44,6 @@ criteria = None
 # Use this to divide a lab in pieces that have the same configuration,
 # but should be done in smaller chunks.
 subbatches = 1
+
+username = admin
+password = wearethebuilders

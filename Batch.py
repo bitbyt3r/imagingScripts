@@ -2,13 +2,14 @@ from Image import Image
 from Imager import Imager
 
 class Batch:
-  # TODO: Configuration should come from config dict
   def __init__(self, config):
     self.config = config
     self.name = config['section']
-    self.image = Image(name=config['imagename'], partitionFile=config['partitionfile'])
+    self.image = Image(name=config['imagename'], partitionFile=config['partitionfile'], imageParts=[x.strip() for x in config['imageparts'].split(",")])
     self.clients = []
     self.portOffset = 0
+    self.username = config['username']
+    self.password = config['password']
     self.basePort = int(config['baseport'])
     self.clientSelect = config['clientselect']
     self.clientCriteria = config['criteria']
@@ -17,12 +18,20 @@ class Batch:
       self.numsubbatches = 1
     self.subbatches = []
     self.imagers = []
+    self.basepath = config['basepath']
     
   def selectClient(self, client, selectType, selectAll=False):
+    if client.username != self.username:
+      print "Wrong username"
+      return False
+    if client.password != self.password:
+      print "Wrong password"
+      return False
     if selectAll:
       self.clients.append(client)
       client.batch = self
       return True
+    print self.clientSelect, selectType
     if self.clientSelect == "All" and selectType == "All":
       self.clients.append(client)
       client.batch = self
@@ -37,7 +46,6 @@ class Batch:
       return True
     return False
       
-  # TODO: Run function that creates sub-batches and and imager for each, runs them
   def run(self):
     offset = 0
     for i in xrange(self.numsubbatches):

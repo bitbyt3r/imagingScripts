@@ -20,18 +20,24 @@ class Imager:
     self.readyFunc(self.batch)
     for part in self.batch.image.partitions:
       # TODO: Add client monitoring
+      partFile = ""
+      print part['type']
+      if part['type'] == '7':
+        partFile = os.path.join(self.batch.basepath, part['name']+".ntfs-img")
       udpsendArgs = ['--nopointopoint',
               '--nokbd',
               '--full-duplex',
               '--min-receivers',
               str(len(self.batch.clients)),
               '--max-wait 30',
-              '-f '+self.batch.image.partFile,
+              '-f '+partFile,
               '--portbase '+str(self.batch.basePort+self.batch.portOffset),
               '--ttl 2',
               '--log ./udp-sender.'+str(part['name'])+'.log',
               '--bw-period 30',
               '> ./udp-sender.'+str(part['name'])+'.stdout',
               '2> ./udp-sender.'+str(part['name'])+'.stderr',]
-      print("udp-sender "+" ".join(udpsendArgs))
+      runstr = ("udp-sender "+" ".join(udpsendArgs))
+      print runstr
+      os.system(runstr)
     self.endCallback(self.batch)

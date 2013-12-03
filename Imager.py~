@@ -3,8 +3,9 @@ from threading import Thread
 from time import sleep
 
 class Imager:
-  def __init__(self, batch, endFunc):
+  def __init__(self, batch, endFunc, readyFunc):
     self.endCallback = endFunc
+    self.readyFunc = readyFunc
     self.batch = batch
     self.t = Thread(target=self.run)
     self.t.daemon = True
@@ -16,15 +17,19 @@ class Imager:
     sleep(2)
     #self.endCallback(self.batch)
     #return
+    self.readyFunc(self.batch)
     for part in self.batch.image.partitions:
       # TODO: Add client monitoring
+      partFile = ""
+      if part['type'] == 7:
+        partFile = os.path.join(self.batch.basepath, part['name']+".ntfs-img")
       udpsendArgs = ['--nopointopoint',
               '--nokbd',
               '--full-duplex',
               '--min-receivers',
               str(len(self.batch.clients)),
               '--max-wait 30',
-              '-f '+self.batch.image.partFile,
+              '-f '+partFile,
               '--portbase '+str(self.batch.basePort+self.batch.portOffset),
               '--ttl 2',
               '--log ./udp-sender.'+str(part['name'])+'.log',

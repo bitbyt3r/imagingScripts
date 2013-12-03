@@ -1,9 +1,10 @@
 import re
 
 class Image:
-  def __init__(self, name, partitionFile):
+  def __init__(self, name, partitionFile, imageParts):
     self.name = name
     self.partFile = partitionFile
+    self.imageParts = imageParts
     self.partitions = self.getPartitions()
     
   def clientConf(self):
@@ -29,6 +30,7 @@ class Image:
         part['number'] = int(m.group(2))
         part['type'] = m.group(5)
         part['bootable'] = bool(m.group(6))
-        partitions.append(part)
+        if part['name'] in self.imageParts:
+          partitions.append(part)
     return partitions
     
