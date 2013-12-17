@@ -6,6 +6,7 @@ class Image:
     self.partFile = partitionFile
     self.imageParts = imageParts
     self.partitions = self.getPartitions()
+    self.partMap = ""
     
   def clientConf(self):
     clientConf = {}
@@ -34,3 +35,8 @@ class Image:
           partitions.append(part)
     return partitions
     
+  def getPartMap(self):
+    if not self.partMap:
+      with open(self.partFile, "r") as partitionFile:
+        self.partMap = partitionFile.read()
+    return self.partMap

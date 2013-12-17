@@ -30,7 +30,7 @@ class Image:
         part['number'] = int(m.group(2))
         part['type'] = m.group(5)
         part['bootable'] = bool(m.group(6))
-        if part['name'] in imageParts:
+        if part['name'] in self.imageParts:
           partitions.append(part)
     return partitions
     

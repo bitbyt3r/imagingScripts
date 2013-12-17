@@ -19,6 +19,7 @@ class Batch:
     self.subbatches = []
     self.imagers = []
     self.basepath = config['basepath']
+    self.repartition = config['repartition'].lower() in ['true', 'y', 't', 'yes']
     
   def selectClient(self, client, selectType, selectAll=False):
     if client.username != self.username:

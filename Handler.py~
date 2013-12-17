@@ -46,12 +46,16 @@ class ImagingHandler:
       return self.clients[sid].getConfig()
       
     @require_login
+    def getPartMap(self, sid):
+      return self.clients[sid].batch.image.getPartMap()
+      
+    @require_login
     def partList(self, sid):
       return self.clients[sid].batch.image.getPartitions()
       
     @require_login
     def getClients(self, sid):
-      return [x.name for in x self.clients.values()]
+      return [x.name for x in self.clients.values()]
       
     @require_login
     def getBatches(self, sid):

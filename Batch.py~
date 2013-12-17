@@ -2,7 +2,6 @@ from Image import Image
 from Imager import Imager
 
 class Batch:
-  # TODO: Configuration should come from config dict
   def __init__(self, config):
     self.config = config
     self.name = config['section']
@@ -19,6 +18,7 @@ class Batch:
       self.numsubbatches = 1
     self.subbatches = []
     self.imagers = []
+    self.basepath = config['basepath']
     
   def selectClient(self, client, selectType, selectAll=False):
     if client.username != self.username:
@@ -46,7 +46,6 @@ class Batch:
       return True
     return False
       
-  # TODO: Run function that creates sub-batches and and imager for each, runs them
   def run(self):
     offset = 0
     for i in xrange(self.numsubbatches):

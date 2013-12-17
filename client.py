@@ -70,6 +70,18 @@ def udpCast(partition, serverConfig):
   else:
     sys.exit("Unknown partition type %s" % partition['type'])
 
+def repartition(shouldRepart, partMap):
+  if not shouldRepart:
+    return
+  if not partMap:
+    print("Error: No partition map received.")
+    return
+  partMapFile = "/tmp/partMap"
+  with open(partMapFile, "w") as partFile:
+    partFile.write(partMap)
+  os.system("sfdisk "+DRIVE_PATH+" -I "+partMapFile)
+  
+
 response = None
 responseFile = []
 responseFileName = "build.conf"
@@ -168,6 +180,7 @@ print "Got Partitions"
 waitForServer(server, sid)
 serverConfig = remoteCall(server.getConfig, sid)
 print "Got Config"
+repartition(*remoteCall(server.getPartMap, sid))
 if verifyPartitions(partitions):
   for i in partitions:
     udpCast(i, serverConfig)
