@@ -30,9 +30,7 @@ class Image:
         part['number'] = int(m.group(2))
         part['type'] = m.group(5)
         part['bootable'] = bool(m.group(6))
-        if part['type'] == 7:
-          part['partfile'] = part['name']+".ntfs-img"
-        if part['name'] in self.imageParts:
+        if part['name'] in imageParts:
           partitions.append(part)
     return partitions
     

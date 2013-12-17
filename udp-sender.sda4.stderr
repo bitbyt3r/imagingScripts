@@ -1,0 +1,7 @@
+Udp-sender 20100130
+Using mcast address 234.85.91.96
+UDP sender for /var/images/Clonezilla/CE-W-Linux-9020-2013-08-26/sda4.ntfs-img at 130.85.91.96 on eth2 
+Broadcasting control to 224.0.0.1
+New connection from 130.85.91.43  (#0) 00000009
+Starting transfer: 00000009
+Could not open file /var/images/Clonezilla/CE-W-Linux-9020-2013-08-26/sda4.ntfs-img: No such file or directory

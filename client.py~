@@ -35,7 +35,6 @@ def verifyPartitions(imageParts):
     part['end'] = int(i.geometry.end)
     part['size'] = int(i.geometry.length)
     part['bootable'] = bool(i.getFlag(parted.PARTITION_BOOT))
-    part['name'] = part['path'].split("/")[2]
     localParts.append(part)
     
   # The slice here is to remove the filesystem type from the tuple received from the server.
@@ -172,7 +171,7 @@ if verifyPartitions(partitions):
   remoteCall(server.registerClient, sid)
   for i in partitions:
     udpCast(i, serverConfig)
-#else:
-#  sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")
+else:
+  sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")
 remoteCall(server.logout, sid)
 sys.exit("Success!")
