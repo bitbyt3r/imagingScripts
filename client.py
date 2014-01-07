@@ -188,22 +188,28 @@ while True:
     print "Login Failed"
     
 observer.stop()
-
+enable_echo(sys.stdin.fileno(), True)
 name = socket.gethostname()
 print "Logged in,", sid
 remoteCall(server.registerClient, sid, name)
 print "Registered"
 partitions = remoteCall(server.partList, sid)
+remoteCall(server.updateStatus, sid, ("waiting", 0))
 print "Got Partitions"
 waitForServer(server, sid)
 serverConfig = remoteCall(server.getConfig, sid)
+remoteCall(server.updateStatus, sid, ("getconf", 0))
 print "Got Config"
 repartition(*remoteCall(server.getPartMap, sid))
+remoteCall(server.updateStatus, sid, ("reparted", 0))
 print partitions
-#if verifyPartitions(partitions):
-for i in partitions:
-  udpCast(i, serverConfig, lambda x: remoteCall(server.updateStatus, sid, x))
-#else:
-#  sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")
+if verifyPartitions(partitions):
+  remoteCall(server.updateStatus, sid, ("running", 0))
+  for i in partitions:
+    udpCast(i, serverConfig, lambda x: remoteCall(server.updateStatus, sid, x))
+else:
+  remoteCall(server.updateStatus, sid, ("error", 1))
+  sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")
+remoteCall(server.updateStatus, sid, ("done", 0))
 remoteCall(server.logout, sid)
 sys.exit("Success!")

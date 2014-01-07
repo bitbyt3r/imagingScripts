@@ -47,7 +47,7 @@ class ImagingHandler:
       
     @require_login
     def getStatus(self, sid):
-      return dict((x,y.status) for x,y in self.clients.iteritems())
+      return dict((x.name,y.status) for x,y in self.clients.iteritems())
     
     @require_login
     def getConfig(self, sid):
