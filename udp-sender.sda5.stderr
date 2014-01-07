@@ -1,12 +1,15 @@
 Udp-sender 20100130
 Using mcast address 234.85.91.96
-UDP sender for /var/images/Clonezilla/CE-ReImage-2013-11-20/sda5.ntfs-img at 130.85.91.96 on eth2 
+UDP sender for /var/images/Clonezilla/CE-Spring-2013-12-13/sda5.ntfs-img at 130.85.91.96 on eth2 
 Broadcasting control to 224.0.0.1
-New connection from 130.85.91.43  (#0) 00000009
+New connection from 130.85.86.220  (#0) 00000009
+New connection from 130.85.86.222  (#1) 00000009
 Starting transfer: 00000009
-bytes= 20 244 224  re-xmits=0005378 ( 38.6%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=966
-bytes= 20 407 296  re-xmits=0005602 ( 39.9%) slice=0112 -   0bytes= 47 314 176  re-xmits=0012591 ( 38.7%) slice=0112 -   0bytes= 69 909 840  re-xmits=0020435 ( 42.5%) slice=0112 -   0bytes= 93 066 064  re-xmits=0028692 ( 44.8%) slice=0112 -   0bytes=111 374 181  re-xmits=0032409 ( 42.3%) slice=0112 -   0
+bytes= 13 534 976  re-xmits=0002994 ( 32.2%) slice=0112 -   0
+Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=619
+Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=2700
+bytes= 35 782 656  re-xmits=0005771 ( 23.4%) slice=0112 -   0bytes= 60 779 264  re-xmits=0005771 ( 13.8%) slice=0112 -   1bytes= 83 492 864  re-xmits=0005771 ( 10.0%) slice=0112 -   0bytes=101 710 336  re-xmits=0005771 (  8.2%) slice=0112 -   1bytes=111 124 490  re-xmits=0005771 (  7.5%) slice=0112 -   1
 Transfer complete.
-Disconnecting #0 (130.85.91.43)
+Disconnecting #0 (130.85.86.220)
+Disconnecting #1 (130.85.86.222)
 

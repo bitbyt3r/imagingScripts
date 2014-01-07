@@ -79,8 +79,8 @@ def repartition(shouldRepart, partMap):
   partMapFile = "/tmp/partMap"
   with open(partMapFile, "w") as partFile:
     partFile.write(partMap)
-  os.system("sfdisk "+DRIVE_PATH+" -I "+partMapFile)
-  
+  os.system("sfdisk --force "+DRIVE_PATH+" < "+partMapFile)
+  os.system("partprobe")  
 
 response = None
 responseFile = []
@@ -181,10 +181,11 @@ waitForServer(server, sid)
 serverConfig = remoteCall(server.getConfig, sid)
 print "Got Config"
 repartition(*remoteCall(server.getPartMap, sid))
-if verifyPartitions(partitions):
-  for i in partitions:
-    udpCast(i, serverConfig)
-else:
-  sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")
+print partitions
+#if verifyPartitions(partitions):
+for i in partitions:
+  udpCast(i, serverConfig)
+#else:
+#  sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")
 remoteCall(server.logout, sid)
 sys.exit("Success!")

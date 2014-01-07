@@ -6,6 +6,7 @@ class Image:
     self.partFile = partitionFile
     self.imageParts = imageParts
     self.partitions = self.getPartitions()
+    print self.imageParts
     self.partMap = ""
     
   def clientConf(self):
@@ -20,8 +21,10 @@ class Image:
       partLines = [x for x in partitionFile.readlines() if x[:4] == "/dev"]
     partitions = []
     for i in partLines:
+      print i
       m = re.search('(/dev/sda(\d))\s:\sstart=\s*(\d+),\ssize=\s*(\d+),\sId=\s*(\d+|f),*\s*(bootable)?', i)
       if m:
+        print "Matches"
         part = {}
         part['path'] = m.group(1)
         part['name'] = m.group(1).split("/")[-1]
@@ -31,7 +34,11 @@ class Image:
         part['number'] = int(m.group(2))
         part['type'] = m.group(5)
         part['bootable'] = bool(m.group(6))
-        if part['name'] in self.imageParts:
+        print "Name: ", part['name']
+        foo = part['name']
+        foo.strip()
+        if foo in self.imageParts:
+          print "Adding..."
           partitions.append(part)
     return partitions
     

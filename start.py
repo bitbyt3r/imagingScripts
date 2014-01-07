@@ -9,7 +9,7 @@ def remoteCall(func, *args):
     except xmlrpclib.Fault as e:
         print e
 
-server = xmlrpclib.ServerProxy("https://forge.cs.umbc.edu:2048")
+server = xmlrpclib.ServerProxy("https://rhesus.cs.umbc.edu:2048")
 sid = remoteCall(server.login, raw_input("username:").strip(), getpass.getpass("password:").strip())
 commands = {"run":server.run, "getbatches":server.getBatches, "getclients":server.getClients}
 while True:

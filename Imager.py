@@ -24,6 +24,10 @@ class Imager:
       print part['type']
       if part['type'] == '7':
         partFile = os.path.join(self.batch.basepath, part['name']+".ntfs-img")
+      elif part['type'] == '83':
+        partFile = os.path.join(self.batch.basepath, part['name'])
+      else:
+        print "Partition type %s is unknown." % part['name']
       udpsendArgs = ['--nopointopoint',
               '--nokbd',
               '--full-duplex',
