@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import xmlrpclib
 import getpass
+import readline
 
 def remoteCall(func, *args):
     try:
