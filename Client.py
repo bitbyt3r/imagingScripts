@@ -8,6 +8,7 @@ class Client:
     self.port = 0
     self.started = False
     self.startFunc = startFunc
+    self.status = (None, 0)
   
   def start(self):
     self.startFunc(self)

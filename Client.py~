@@ -6,6 +6,7 @@ class Client:
     self.sid = sid
     self.batch = None
     self.port = 0
+    self.started = False
     self.startFunc = startFunc
   
   def start(self):

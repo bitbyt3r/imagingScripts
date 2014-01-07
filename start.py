@@ -11,7 +11,7 @@ def remoteCall(func, *args):
 
 server = xmlrpclib.ServerProxy("https://rhesus.cs.umbc.edu:2048")
 sid = remoteCall(server.login, raw_input("username:").strip(), getpass.getpass("password:").strip())
-commands = {"run":server.run, "getbatches":server.getBatches, "getclients":server.getClients}
+commands = {"run":server.run, "batches":server.getBatches, "clients":server.getClients, "status":server.getStatus}
 while True:
   command = raw_input(":").strip()
   if command.split(" ")[0] in commands:
