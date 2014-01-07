@@ -41,8 +41,6 @@ def verifyPartitions(imageParts):
     
   # The slice here is to remove the filesystem type from the tuple received from the server.
   # At this point, we don't care about filesystems.
-  print localParts
-  print imageParts
   imagePartSettings = set()
   for image in imageParts:
     for i in image.items():
@@ -58,7 +56,7 @@ def verifyPartitions(imageParts):
         localPartSettings.add(tuple(tup))
     return imagePartSettings <= localPartSettings
     
-def cmd(command, getProc=True):
+def cmd(command, getProc=False):
   print command
   if getProc:
     p = subprocess.Popen([command], stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
@@ -66,29 +64,43 @@ def cmd(command, getProc=True):
   else:
     return os.system(command) == 0
 
+def nonBlockRead(output):
+  fd = output.fileno()
+  fl = fcntl.fcntl(fd, fcntl.F_GETFL)
+  fcntl.fcntl(fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
+  try:
+    return output.readline()
+  except:
+    return ''
+
 def udpCast(partition, serverConfig, statusCallback):
   if partition['type'] in ['7','f']:
-    p = cmd("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O {path} -".format(port=serverConfig['portbase'], path=partition['path']))
-    p.stdin.close()
+    statusCallback("begun", 0)
+    p = cmd("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O {path} -".format(port=serverConfig['portbase'], path=partition['path']), getProc=True)
+    statusCallback("gettingimage", 0)
     last = 0
-    for line in iter(p.stdout.readline, ''):
+    line = nonBlockRead(p.stdout)
+    p.stdout.flush()
+    while p != "":
       try:
-        next = int(line.split(" ")[0])
+        print line,
+        next = int(line.split(".")[0])
         if last+1 < next:
           last += 1
-          statusCallback(("ntfs",next))
+          statusCallback("ntfs",next)
       except:
         pass
+    p.stdin.close()
     p.stdout.close()
   elif partition['type'] in ['83','82']:
     p = cmd("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | partimage -b restore {path} stdin".format(port=serverConfig['portbase'], path=partition['path']))
     p.stdin.close()
     p.stdout.close()
-    statusCallback(("ext",0))
+    statusCallback("ext",0)
   elif partition['type'] in ['5']:
     cmd("mkswap {path}".format(path=partition['path']))
   else:
-    statusCallback(("error",0))
+    statusCallback("error",0)
     sys.exit("Unknown partition type %s" % partition['type'])
 
 def repartition(shouldRepart, partMap):
@@ -191,6 +203,8 @@ while True:
     print "Login Failed"
     
 observer.stop()
+def setStatus(type, num):
+  remoteCall(server.updateStatus, sid, (type, num))
 enable_echo(sys.stdin.fileno(), True)
 name = socket.gethostname()
 print "Logged in,", sid
@@ -209,7 +223,7 @@ print partitions
 if verifyPartitions(partitions):
   remoteCall(server.updateStatus, sid, ("running", 0))
   for i in partitions:
-    udpCast(i, serverConfig, lambda x: remoteCall(server.updateStatus, sid, x))
+    udpCast(i, serverConfig, setStatus)
 else:
   remoteCall(server.updateStatus, sid, ("error", 1))
   sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")

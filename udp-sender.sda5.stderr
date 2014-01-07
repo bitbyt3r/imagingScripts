@@ -2,14 +2,3 @@ Udp-sender 20100130
 Using mcast address 234.85.91.96
 UDP sender for /var/images/Clonezilla/CE-Spring-2013-12-13/sda5.ntfs-img at 130.85.91.96 on eth2 
 Broadcasting control to 224.0.0.1
-New connection from 130.85.86.220  (#0) 00000009
-New connection from 130.85.86.222  (#1) 00000009
-Starting transfer: 00000009
-bytes= 13 534 976  re-xmits=0002994 ( 32.2%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=619
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=2700
-bytes= 35 782 656  re-xmits=0005771 ( 23.4%) slice=0112 -   0bytes= 60 779 264  re-xmits=0005771 ( 13.8%) slice=0112 -   1bytes= 83 492 864  re-xmits=0005771 ( 10.0%) slice=0112 -   0bytes=101 710 336  re-xmits=0005771 (  8.2%) slice=0112 -   1bytes=111 124 490  re-xmits=0005771 (  7.5%) slice=0112 -   1
-Transfer complete.
-Disconnecting #0 (130.85.86.220)
-Disconnecting #1 (130.85.86.222)
-
