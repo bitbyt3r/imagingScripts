@@ -188,7 +188,7 @@ while True:
     print "Login Failed"
     
 observer.stop()
-
+enable_echo(sys.stdin.fileno(), True)
 name = socket.gethostname()
 print "Logged in,", sid
 remoteCall(server.registerClient, sid, name)

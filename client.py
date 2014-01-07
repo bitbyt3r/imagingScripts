@@ -72,10 +72,13 @@ def udpCast(partition, serverConfig, statusCallback):
     p.stdin.close()
     last = 0
     for line in iter(p.stdout.readline, ''):
-      next = int(line.split(" ")[0])
-      if last+1 < next:
-        last += 1
-        statusCallback(("ntfs",next))
+      try:
+        next = int(line.split(" ")[0])
+        if last+1 < next:
+          last += 1
+          statusCallback(("ntfs",next))
+      except:
+        pass
     p.stdout.close()
   elif partition['type'] in ['83','82']:
     p = cmd("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | partimage -b restore {path} stdin".format(port=serverConfig['portbase'], path=partition['path']))
