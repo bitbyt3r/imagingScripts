@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python -W ignore::DeprecationWarning
 import threading
 import os
 import sys
@@ -10,6 +10,7 @@ import time
 response = None
 responseFile = []
 responseFileName = "build.conf"
+strWidth = 27
 
 def main():
   # install everything needed to run this script
@@ -47,10 +48,18 @@ def main():
   completeSuccess = True
   for i in threads:
     if i.success:
-      print i.name, "\t[\033[32m  Ok  \033[0m]"
+      print i.name+" "*(strWidth-len(i.name))+"\t[\033[32m  Ok  \033[0m]"
     else:
-      print i.name, "\t[\033[31mFailed\033[0m]"
+      print i.name+" "*(strWidth-len(i.name))+"\t[\033[31mFailed\033[0m]"
       completeSuccess = False
+  if completeSuccess:
+    if config['debug']:
+      print "Setting default init level", "\t[\033[32m  Ok  \033[0m]" 
+    elif os.system("/bin/sed -i 's/3/5/g' /etc/inittab"):
+      completeSuccess = False
+      print "Setting default init level", "\t[\033[31mFailed\033[0m]"
+    else:
+      print "Setting default init level", "\t[\033[32m  Ok  \033[0m]"
   if completeSuccess:
     print "Everything succeeded!"
     if config['reboot']:
@@ -61,7 +70,8 @@ def main():
     sys.exit(1)
   
 def installReqs():
-  os.system("/usr/bin/yum install udpcast")
+  os.system("/usr/bin/yum install -y udpcast")
+  os.system("/usr/bin/yum install -y partimage")
   os.system("/usr/bin/easy_install pyudev")
   
 class commandThread(threading.Thread):
