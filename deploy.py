@@ -17,6 +17,7 @@ def main():
   installReqs()
   # Get configuration for deployment
   config = getConfig()
+  time.sleep(3)
   if config['debug'] in ["true", "True"]:
     config['debug'] = True
   else:
@@ -55,7 +56,7 @@ def main():
   if completeSuccess:
     if config['debug']:
       print "Setting default init level", "\t[\033[32m  Ok  \033[0m]" 
-    elif os.system("/bin/sed -i 's/3/5/g' /etc/inittab"):
+    elif os.system("/bin/sed -i 's/1/5/g' /etc/inittab"):
       completeSuccess = False
       print "Setting default init level", "\t[\033[31mFailed\033[0m]"
     else:
@@ -70,9 +71,8 @@ def main():
     sys.exit(1)
   
 def installReqs():
-  os.system("/usr/bin/yum install -y udpcast")
-  os.system("/usr/bin/yum install -y partimage")
-  os.system("/usr/bin/easy_install pyudev")
+  os.system("/bin/cp -r /etc/yum.repos.d.csee/* /etc/yum.repos.d/")
+  os.system("/usr/bin/yum install -y udpcast partimage")
   
 class commandThread(threading.Thread):
   def __init__(self, command, config, name="command"):
@@ -140,7 +140,7 @@ def prompt(text="", password=False):
   while not response:
     for i in responseFile:
       if text in i:
-        answer = i.split(text)[1].strip()
+        answer = i.split(text+":")[1].strip()
         if answer:
           prompt.join(0)
           if not password:
@@ -159,6 +159,7 @@ def getConfig():
   mountDir = "/mnt/responseDev"
   def readResponseFile(action, device):
     if 'ID_FS_TYPE' in device and action == 'add':
+      print "Found drive..."
       if not os.path.exists(mountDir):
         os.makedirs(mountDir)
       os.system("mount {device} {mountDir}".format(device=device.device_node, mountDir=mountDir))
