@@ -59,29 +59,19 @@ def verifyPartitions(imageParts):
 def cmd(command, getProc=False):
   print command
   if getProc:
-    p = subprocess.Popen([command], stdout=subprocess.PIPE, stdin=subprocess.PIPE, shell=True)
+    p = subprocess.Popen([command], stdout=subprocess.PIPE, shell=True, universal_newlines=True)
     return p
   else:
     return os.system(command) == 0
 
-def nonBlockRead(output):
-  fd = output.fileno()
-  fl = fcntl.fcntl(fd, fcntl.F_GETFL)
-  fcntl.fcntl(fd, fcntl.F_SETFL, fl | os.O_NONBLOCK)
-  try:
-    return output.readline()
-  except:
-    return ''
-
 def udpCast(partition, serverConfig, statusCallback):
   if partition['type'] in ['7','f']:
     statusCallback("begun", 0)
-    p = cmd("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O {path} -".format(port=serverConfig['portbase'], path=partition['path']), getProc=True)
+    p = cmd("./test.py")
+    #p = cmd("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O {path} -".format(port=serverConfig['portbase'], path=partition['path']), getProc=True)
     statusCallback("gettingimage", 0)
     last = 0
-    line = nonBlockRead(p.stdout)
-    p.stdout.flush()
-    while p != "":
+    for line in iter(p.stdout.readline, ''):
       try:
         print line,
         next = int(line.split(".")[0])
@@ -90,7 +80,7 @@ def udpCast(partition, serverConfig, statusCallback):
           statusCallback("ntfs",next)
       except:
         pass
-    p.stdin.close()
+    p.wait()
     p.stdout.close()
   elif partition['type'] in ['83','82']:
     p = cmd("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | partimage -b restore {path} stdin".format(port=serverConfig['portbase'], path=partition['path']))
