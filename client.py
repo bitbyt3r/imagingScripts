@@ -17,6 +17,9 @@ DRIVE_PATH = "/dev/sda"
 if os.geteuid() != 0:
   sys.exit("You will need to be root to run this script successfully.")
 
+if '-s' in sys.argv:
+  os.system("yum install -y partimage udpcast python-pyudev nano")
+
 def remoteCall(func, *args):
     try:
         ret = func(*args)
@@ -67,28 +70,13 @@ def cmd(command, getProc=False):
 def udpCast(partition, serverConfig, statusCallback):
   if partition['type'] in ['7','f']:
     statusCallback("begun", 0)
-    p = cmd("./test.py")
-    #p = cmd("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O {path} -".format(port=serverConfig['portbase'], path=partition['path']), getProc=True)
+    os.system("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O {path} -".format(port=serverConfig['portbase'], path=partition['path']))
     statusCallback("gettingimage", 0)
-    last = 0
-    for line in iter(p.stdout.readline, ''):
-      try:
-        print line,
-        next = int(line.split(".")[0])
-        if last+1 < next:
-          last += 1
-          statusCallback("ntfs",next)
-      except:
-        pass
-    p.wait()
-    p.stdout.close()
   elif partition['type'] in ['83','82']:
-    p = cmd("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | partimage -b restore {path} stdin".format(port=serverConfig['portbase'], path=partition['path']))
-    p.stdin.close()
-    p.stdout.close()
+    os.system("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | partimage -b restore {path} stdin".format(port=serverConfig['portbase'], path=partition['path']))
     statusCallback("ext",0)
   elif partition['type'] in ['5']:
-    cmd("mkswap {path}".format(path=partition['path']))
+    os.system("mkswap {path}".format(path=partition['path']))
   else:
     statusCallback("error",0)
     sys.exit("Unknown partition type %s" % partition['type'])
@@ -97,13 +85,14 @@ def repartition(shouldRepart, partMap):
   if not shouldRepart:
     return
   if not partMap:
-    print("Error: No partition map received.")
-    return
+    sys.exit("Error: No partition map received.")
   partMapFile = "/tmp/partMap"
   with open(partMapFile, "w") as partFile:
     partFile.write(partMap)
+  os.system("swapoff -a")
   os.system("sfdisk --force "+DRIVE_PATH+" < "+partMapFile)
-  os.system("partprobe")  
+  os.system("partprobe") 
+  os.system("swapon /dev/sda2") 
 
 response = None
 responseFile = []
@@ -171,6 +160,7 @@ def readResponseFile(action, device):
       with open(os.path.join(mountDir, responseFileName), "r") as fileHandle:
         global responseFile
         responseFile = fileHandle.readlines()
+    os.system("umount {mountDir}".format(mountDir=mountDir))
 observer = pyudev.MonitorObserver(monitor, readResponseFile)
 observer.start()
         
@@ -187,36 +177,35 @@ while True:
   password = password.strip()
   sid = remoteCall(server.login, username, password)
   if sid:
-    print "Login Successful"
     break
-  else:
-    print "Login Failed"
     
 observer.stop()
+enable_echo(sys.stdin.fileno(), True)
+
 def setStatus(type, num):
   remoteCall(server.updateStatus, sid, (type, num))
-enable_echo(sys.stdin.fileno(), True)
+
 name = socket.gethostname()
-print "Logged in,", sid
 remoteCall(server.registerClient, sid, name)
-print "Registered"
 partitions = remoteCall(server.partList, sid)
-remoteCall(server.updateStatus, sid, ("waiting", 0))
-print "Got Partitions"
+setStatus("waiting", 0)
 waitForServer(server, sid)
 serverConfig = remoteCall(server.getConfig, sid)
-remoteCall(server.updateStatus, sid, ("getconf", 0))
-print "Got Config"
+setStatus("getconf", 0)
 repartition(*remoteCall(server.getPartMap, sid))
-remoteCall(server.updateStatus, sid, ("reparted", 0))
-print partitions
+for i in partitions:
+  if i['type'] in ['7','f']:
+    setStatus("format-ntfs",0)
+    os.system("mkfs.ntfs -L Windows {path}".format(path=i['path']))
+
+setStatus("reparted", 0)
 if verifyPartitions(partitions):
-  remoteCall(server.updateStatus, sid, ("running", 0))
+  setStatus("imaging", 0)
   for i in partitions:
     udpCast(i, serverConfig, setStatus)
 else:
-  remoteCall(server.updateStatus, sid, ("error", 1))
+  setStatus("error", 1)
   sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")
-remoteCall(server.updateStatus, sid, ("done", 0))
+setStatus("done", 0)
 remoteCall(server.logout, sid)
 sys.exit("Success!")

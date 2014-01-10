@@ -2,3 +2,11 @@ Udp-sender 20100130
 Using mcast address 234.85.91.96
 UDP sender for /var/images/Clonezilla/CE-Spring-2013-12-13/sda6 at 130.85.91.96 on eth2 
 Broadcasting control to 224.0.0.1
+New connection from 130.85.86.220  (#0) 00000009
+New connection from 130.85.91.25  (#1) 00000009
+Starting transfer: 00000009
+bytes=     602 139  re-xmits=0000000 (  0.0%) slice=0112 -   1
+Transfer complete.
+Disconnecting #0 (130.85.86.220)
+Disconnecting #1 (130.85.91.25)
+
