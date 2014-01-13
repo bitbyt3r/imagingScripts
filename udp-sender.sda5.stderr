@@ -1,6 +1,0 @@
-Udp-sender 20100130
-Using mcast address 234.85.91.96
-UDP sender for /var/images/Clonezilla/CE-Spring-2013-12-13/sda5.ntfs-img at 130.85.91.96 on eth2 
-Broadcasting control to 224.0.0.1
-Bad message from port 130.85.91.96.9503
-problem getting data from client: Success

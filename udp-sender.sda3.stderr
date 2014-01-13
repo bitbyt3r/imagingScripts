@@ -1,394 +1,0 @@
-Udp-sender 20100130
-Using mcast address 234.85.91.96
-UDP sender for /var/images/Clonezilla/CE-Spring-2013-12-13/sda3.ntfs-img at 130.85.91.96 on eth2 
-Broadcasting control to 224.0.0.1
-New connection from 130.85.91.13  (#0) 00000009NStarting transfer: 00000009
-bytes=     163 072  re-xmits=0000404 (360.7%) slice=0112 -   0bytes=  1 956 864  re-xmits=0001198 ( 89.1%) slice=0112 -Timeout notTimeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2Timeout TimTimeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2Timeout notTimeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2Timeout notTimeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2Timeout notTimeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2Timeout notTimeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2Timeout notTimeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2Timeout notTimeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2Timeout notTimeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=91296
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=137707
-Dropping client #0 because of timeout
-Disconnecting #0 (130.85.86.223)
-bytes=     163 072  re-xmits=0000575 (513.3%) slice=0112 -   1
-Timeout notAnswered=[1] notReady=[1] nrAns=0 nrRead=0 nrPart=1 avg=137707
-bytes=     326 144  re-xmits=0000861 (384.3%) slice=0112 -   1
-Timeout notAnswered=[1] notReady=[1] nrAns=0 nrRead=0 nrPart=1 avg=116914
-bytes=     652 288  re-xmits=0001031 (230.1%) slice=0112 -   1bytes=  2 283 008  re-xmits=0001542 ( 98.3%) slice=0112 -   1bytes=  3 098 368  re-xmits=0001865 ( 87.6%) slice=0112 -   1bytes=  3 424 512  re-xmits=0001998 ( 84.9%) slice=0112 -   1bytes=  4 076 800  re-xmits=0002364 ( 84.4%) slice=0112 -   1bytes=  5 218 304  re-xmits=0002730 ( 76.1%) slice=0112 -   1bytes=  5 870 592  re-xmits=0003065 ( 76.0%) slice=0112 -   1bytes=  7 827 456  re-xmits=0003751 ( 69.7%) slice=0112 -   1bytes=  9 132 032  re-xmits=0004378 ( 69.8%) slice=0112 -   1bytes= 10 925 824  re-xmits=0005052 ( 67.3%) slice=0112 -   1bytes= 11 904 256  re-xmits=0005494 ( 67.1%) slice=0112 -   1bytes= 13 534 976  re-xmits=0005884 ( 63.2%) slice=0112 -   1bytes= 13 698 048  re-xmits=0006030 ( 64.0%) slice=0112 -   1bytes= 14 187 264  re-xmits=0006523 ( 66.9%) slice=0112 -   1bytes= 14 839 552  re-xmits=0007592 ( 74.4%) slice=0112 -   1bytes= 17 448 704  re-xmits=0008269 ( 69.0%) slice=0112 -   1bytes= 18 590 208  re-xmits=0008634 ( 67.6%) slice=0112 -   1bytes= 21 851 648  re-xmits=0009110 ( 60.7%) slice=0112 -   1bytes= 22 667 008  re-xmits=0009575 ( 61.5%) slice=0112 -   1bytes= 23 645 440  re-xmits=0010238 ( 63.0%) slice=0112 -   1bytes= 27 396 096  re-xmits=0010738 ( 57.0%) slice=0112 -   1bytes= 30 168 320  re-xmits=0011359 ( 54.8%) slice=0112 -   1bytes= 32 940 544  re-xmits=0011999 ( 53.0%) slice=0112 -   1bytes= 35 223 552  re-xmits=0012653 ( 52.3%) slice=0112 -   1bytes= 35 549 696  re-xmits=0013336 ( 54.6%) slice=0112 -   1bytes= 36 201 984  re-xmits=0014421 ( 57.9%) slice=0112 -   1bytes= 38 484 992  re-xmits=0014967 ( 56.6%) slice=0112 -   1bytes= 39 952 640  re-xmits=0015691 ( 57.1%) slice=0112 -   1bytes= 41 420 288  re-xmits=0016391 ( 57.6%) slice=0112 -   1bytes= 42 072 576  re-xmits=0016731 ( 57.9%) slice=0112 -   1bytes= 45 334 016  re-xmits=0017268 ( 55.4%) slice=0112 -   1bytes= 47 943 168  re-xmits=0017724 ( 53.8%) slice=0112 -   1bytes= 49 410 816  re-xmits=0018514 ( 54.5%) slice=0112 -   1bytes= 49 900 032  re-xmits=0019128 ( 55.8%) slice=0112 -   1bytes= 51 693 824  re-xmits=0019692 ( 55.4%) slice=0112 -   1
-Timeout notAnswered=[1] notReady=[1] nrAns=0 nrRead=0 nrPart=1 avg=14304
-bytes= 54 629 120  re-xmits=0020303 ( 54.1%) slice=0112 -   1bytes= 55 281 408  re-xmits=0021120 ( 55.6%) slice=0112 -   1bytes= 57 075 200  re-xmits=0021543 ( 54.9%) slice=0112 -   1bytes= 57 238 272  re-xmits=0021621 ( 54.9%) slice=0112 -   1bytes= 59 032 064  re-xmits=0022122 ( 54.5%) slice=0112 -   1
-Timeout notAnswered=[1] notReady=[1] nrAns=0 nrRead=0 nrPart=1 avg=22099
-bytes= 60 010 496  re-xmits=0022392 ( 54.3%) slice=0112 -   1bytes= 63 271 936  re-xmits=0022940 ( 52.7%) slice=0112 -   1bytes= 64 087 296  re-xmits=0023432 ( 53.2%) slice=0112 -   1
-Timeout notAnswered=[1] notReady=[1] nrAns=0 nrRead=0 nrPart=1 avg=19899
-Timeout notAnswered=[1] notReady=[1] nrAns=0 nrRead=0 nrPart=1 avg=20746
-bytes= 64 739 584  re-xmits=0023568 ( 53.0%) slice=0112 -   1bytes= 65 228 800  re-xmits=0024022 ( 53.6%) slice=0112 -   1bytes= 65 718 016  re-xmits=0024384 ( 54.0%) slice=0112 -   1bytes= 66 533 376  re-xmits=0024790 ( 54.2%) slice=0112 -   1bytes= 69 631 744  re-xmits=0025349 ( 53.0%) slice=0112 -   1bytes= 70 447 104  re-xmits=0025574 ( 52.8%) slice=0112 -   1bytes= 72 893 184  re-xmits=0026434 ( 52.8%) slice=0112 -   1bytes= 74 034 688  re-xmits=0027132 ( 53.3%) slice=0112 -   1bytes= 76 806 912  re-xmits=0027777 ( 52.6%) slice=0112 -   1bytes= 77 622 272  re-xmits=0028415 ( 53.2%) slice=0112 -   1bytes= 79 742 208  re-xmits=0028837 ( 52.6%) slice=0112 -   1bytes= 80 557 568  re-xmits=0029423 ( 53.1%) slice=0112 -   1bytes= 81 372 928  re-xmits=0029926 ( 53.5%) slice=0112 -   1bytes= 82 025 216  re-xmits=0030394 ( 53.9%) slice=0112 -   1bytes= 82 840 576  re-xmits=0030881 ( 54.2%) slice=0112 -   1
-Timeout notAnswered=[1] notReady=[1] nrAns=0 nrRead=0 nrPart=1 avg=22826
-bytes= 83 166 720  re-xmits=0031223 ( 54.6%) slice=0112 -   1bytes= 85 123 584  re-xmits=0031757 ( 54.3%) slice=0112 -   1bytes= 86 102 016  re-xmits=0032294 ( 54.6%) slice=0112 -   1bytes= 86 591 232  re-xmits=0032755 ( 55.0%) slice=0112 -   1bytes= 88 548 096  re-xmits=0033387 ( 54.8%) slice=0112 -   1bytes= 88 711 168  re-xmits=0033879 ( 55.6%) slice=0112 -   1bytes= 89 689 600  re-xmits=0034399 ( 55.8%) slice=0112 -   1bytes= 91 320 320  re-xmits=0034939 ( 55.7%) slice=0112 -   1bytes= 95 070 976  re-xmits=0035422 ( 54.2%) slice=0112 -   1bytes= 97 517 056  re-xmits=0035779 ( 53.4%) slice=0112 -   1bytes= 98 495 488  re-xmits=0036480 ( 53.9%) slice=0112 -   1bytes=101 920 000  re-xmits=0036866 ( 52.6%) slice=0112 -   1bytes=103 876 864  re-xmits=0037448 ( 52.4%) slice=0112 -   1bytes=104 366 080  re-xmits=0037817 ( 52.7%) slice=0112 -   1bytes=107 464 448  re-xmits=0038364 ( 51.9%) slice=0112 -   1bytes=109 421 312  re-xmits=0038727 ( 51.5%) slice=0112 -   1bytes=112 519 680  re-xmits=0039285 ( 50.8%) slice=0112 -   1bytes=113 987 328  re-xmits=0040044 ( 51.1%) slice=0112 -   1bytes=118 064 128  re-xmits=0040289 ( 49.6%) slice=0112 -   1bytes=120 184 064  re-xmits=0040837 ( 49.4%) slice=0112 -   1bytes=121 977 856  re-xmits=0041651 ( 49.7%) slice=0112 -   1bytes=125 402 368  re-xmits=0042022 ( 48.7%) slice=0112 -   1bytes=128 826 880  re-xmits=0042598 ( 48.1%) slice=0112 -   1bytes=130 457 600  re-xmits=0043094 ( 48.0%) slice=0112 -   1bytes=130 620 672  re-xmits=0043109 ( 48.0%) slice=0112 -   1bytes=133 882 112  re-xmits=0043652 ( 47.4%) slice=0112 -   1bytes=134 697 472  re-xmits=0044273 ( 47.8%) slice=0112 -   1bytes=136 491 264  re-xmits=0044873 ( 47.8%) slice=0112 -   1bytes=137 469 696  re-xmits=0045265 ( 47.9%) slice=0112 -   1bytes=138 448 128  re-xmits=0045909 ( 48.2%) slice=0112 -   1bytes=139 426 560  re-xmits=0046287 ( 48.3%) slice=0112 -   1bytes=140 404 992  re-xmits=0046942 ( 48.6%) slice=0112 -   1bytes=142 361 856  re-xmits=0047975 ( 49.0%) slice=0112 -   1bytes=143 503 360  re-xmits=0048578 ( 49.2%) slice=0112 -   1bytes=143 829 504  re-xmits=0048869 ( 49.4%) slice=0112 -   1bytes=145 623 296  re-xmits=0049599 ( 49.5%) slice=0112 -   1bytes=147 580 160  re-xmits=0050337 ( 49.6%) slice=0112 -   1bytes=148 232 448  re-xmits=0050971 ( 50.0%) slice=0112 -   1bytes=150 515 456  re-xmits=0051575 ( 49.8%) slice=0112 -   1bytes=151 004 672  re-xmits=0051911 ( 50.0%) slice=0112 -   1bytes=152 798 464  re-xmits=0052720 ( 50.2%) slice=0112 -   1=0 nrPart=1 avg=3147
-bytes=411 104 512  re-xmits=0025611 (  9.0%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3239
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2993
-bytes=428 879 360  re-xmits=0026380 (  8.9%) slice=0112 -   0bytes=435 355 648  re-xmits=0026548 (  8.8%) slice=0112 -   0bytes=443 925 664  re-xmits=0026846 (  8.8%) slice=0112 -   0bytes=449 723 456  re-xmits=0027058 (  8.7%) slice=0112 -   0bytes=459 210 752  re-xmits=0027346 (  8.6%) slice=0112 -   0bytes=465 174 528  re-xmits=0027346 (  8.5%) slice=0112 -   0bytes=474 066 320  re-xmits=0027671 (  8.4%) slice=0112 -   0bytes=480 190 256  re-xmits=0027792 (  8.4%) slice=0112 -   0bytes=486 149 664  re-xmits=0027901 (  8.3%) slice=0112 -   0bytes=494 993 408  re-xmits=0028151 (  8.2%) slice=0112 -   0bytes=501 120 256  re-xmits=0028377 (  8.2%) slice=0112 -   0bytes=507 963 456  re-xmits=0028748 (  8.2%) slice=0112 -   0bytes=512 884 736  re-xmits=0028837 (  8.1%) slice=0112 -   0bytes=518 848 512  re-xmits=0028985 (  8.1%) slice=0112 -   0bytes=524 812 288  re-xmits=0029051 (  8.0%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2997
-bytes=531 589 968  re-xmits=0029364 (  8.0%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2954
-bytes=538 364 736  re-xmits=0029736 (  8.0%) slice=0112 -   0bytes=548 566 928  re-xmits=0029902 (  7.9%) slice=0112 -   0bytes=551 430 880  re-xmits=0029974 (  7.9%) slice=0112 -   0bytes=557 391 744  re-xmits=0030137 (  7.8%) slice=0112 -   0bytes=563 204 096  re-xmits=0030237 (  7.8%) slice=0112 -   0bytes=571 124 736  re-xmits=0030435 (  7.7%) slice=0112 -   0bytes=576 270 240  re-xmits=0030458 (  7.6%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2272
-bytes=579 627 776  re-xmits=0030788 (  7.7%) slice=0112 -   0bytes=580 769 280  re-xmits=0030996 (  7.7%) slice=0112 -   0bytes=586 893 216  re-xmits=0031696 (  7.8%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2799
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2944
-bytes=596 377 600  re-xmits=0032026 (  7.8%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2812
-bytes=604 031 792  re-xmits=0032425 (  7.8%) slice=0112 -   0bytes=606 892 832  re-xmits=0032446 (  7.7%) slice=0112 -   0bytes=614 268 928  re-xmits=0032798 (  7.7%) slice=0112 -   0bytes=621 534 368  re-xmits=0032818 (  7.6%) slice=0112 -   0bytes=626 260 544  re-xmits=0033310 (  7.7%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3097
-bytes=635 411 504  re-xmits=0033570 (  7.6%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2972
-bytes=641 370 912  re-xmits=bytes=190 631 168  re-xmits=0067628 ( 51.6%) slice=0112 -   0bytes=191 935 744  re-xmits=0068207 ( 51.7%) slice=0112 -   0bytes=192 914 176  re-xmits=0069017 ( 52.0%) slice=0112 -   0bytes=193 566 464  re-xmits=0069454 ( 52.2%) slice=0112 -   0bytes=195 034 112  re-xmits=0070104 ( 52.3%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=20840
-bytes=195 197 184  re-xmits=0070258 ( 52.4%) slice=0112 -   0bytes=195 360 256  re-xmits=0070305 ( 52.3%) slice=0112 -   0bytes=197 969 408  re-xmits=0071050 ( 52.2%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=11229
-bytes=200 089 344  re-xmits=0071816 ( 52.2%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=7731
-bytes=202 209 280  re-xmits=0072281 ( 52.0%) slice=0112 -   0bytes=202 372 352  re-xmits=0072855 ( 52.4%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=8726
-bytes=204 818 432  re-xmits=0073330 ( 52.1%) slice=0112 -   0bytes=206 775 296  re-xmits=0074532 ( 52.4%) slice=0112 -   0bytes=210 689 024  re-xmits=0075033 ( 51.8%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=7095
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=7095
-bytes=211 178 240  re-xmits=0075253 ( 51.8%) slice=0112 -   0bytes=212 319 744  re-xmits=0075886 ( 52.0%) slice=0112 -   0bytes=213 298 176  re-xmits=0076454 ( 52.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=9937
-bytes=214 765 824  re-xmits=0077181 ( 52.3%) slice=0112 -   0bytes=215 581 184  re-xmits=0077718 ( 52.4%) slice=0112 -   0bytes=216 559 616  re-xmits=0078384 ( 52.7%) slice=0112 -   0bytes=217 538 048  re-xmits=0078850 ( 52.7%) slice=0112 -   0bytes=217 701 120  re-xmits=0079077 ( 52.8%) slice=0112 -   0bytes=219 494 912  re-xmits=0079758 ( 52.9%) slice=0112 -   0bytes=220 147 200  re-xmits=0080298 ( 53.1%) slice=0112 -   0bytes=220 799 488  re-xmits=0080684 ( 53.2%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=15296
-bytes=221 451 776  re-xmits=0081349 ( 53.4%) slice=0112 -   0bytes=223 245 568  re-xmits=0082039 ( 53.5%) slice=0112 -   0bytes=224 713 216  re-xmits=0082737 ( 53.6%) slice=0112 -   0bytes=225 039 360  re-xmits=0083184 ( 53.8%) slice=0112 -   0bytes=226 017 792  re-xmits=0083804 ( 53.9%) slice=0112 -   0bytes=228 300 800  re-xmits=0084432 ( 53.8%) slice=0112 -   1bytes=229 605 376  re-xmits=0085004 ( 53.9%) slice=0112 -   0bytes=231 725 312  re-xmits=0085837 ( 53.9%) slice=0112 -   0bytes=232 377 600  re-xmits=0086243 ( 54.0%) slice=0112 -   0bytes=233 519 104  re-xmits=0087142 ( 54.3%) slice=0112 -   0bytes=234 660 608  re-xmits=0087773 ( 54.4%) slice=0112 -   0bytes=236 454 400  re-xmits=0088535 ( 54.5%) slice=0112 -   0bytes=237 432 832  re-xmits=0089036 ( 54.5%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=12587
-bytes=239 389 696  re-xmits=0089642 ( 54.5%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=7701
-bytes=240 531 200  re-xmits=0090224 ( 54.6%) slice=0112 -   0bytes=242 814 208  re-xmits=0091018 ( 54.5%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=10123
-bytes=245 097 216  re-xmits=0091696 ( 54.4%) slice=0112 -   0bytes=248 684 800  re-xmits=0092261 ( 54.0%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=7595
-bytes=250 315 520  re-xmits=0093177 ( 54.1%) slice=0112 -   0bytes=251 130 880  re-xmits=0093770 ( 54.3%) slice=0112 -   0bytes=252 109 312  re-xmits=0094540 ( 54.5%) slice=0112 -   0bytes=252 761 600  re-xmits=0094874 ( 54.6%) slice=0112 -   0bytes=253 413 888  re-xmits=0095909 ( 55.1%) slice=0112 -   0bytes=253 576 960  re-xmits=0096144 ( 55.2%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=6901
-bytes=256 675 328  re-xmits=0097079 ( 55.0%) slice=0112 -   0bytes=259 284 480  re-xmits=0097722 ( 54.8%) slice=0112 -   0bytes=260 915 200  re-xmits=0098678 ( 55.0%) slice=0112 -   0bytes=261 078 272  re-xmits=0098688 ( 55.0%) slice=0112 -   0bytes=261 241 344  re-xmits=0098769 ( 55.0%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=7088
-bytes=263 035 136  re-xmits=0099339 ( 54.9%) slice=0112 -   0bytes=263 850 496  re-xmits=0099615 ( 54.9%) slice=0112 -   0bytes=264 828 928  re-xmits=0100328 ( 55.1%) slice=0112 -   0bytes=266 133 504  re-xmits=0100924 ( 55.2%) slice=0112 -   0bytes=266 785 792  re-xmits=0101566 ( 55.4%) slice=0112 -   0re-xmits=0128164 ( 45.4%) slice=0112 -   0bytes=411 267 584  re-xmits=0128834 ( 45.6%) slice=0112 -   0bytes=412 898 304  re-xmits=0129622 ( 45.7%) slice=0112 -   0bytes=414 202 880  re-xmits=0130013 ( 45.7%) slice=0112 -   0bytes=414 855 168  re-xmits=0130467 ( 45.7%) slice=0112 -   0bytes=415 507 456  re-xmits=0130950 ( 45.8%) slice=0112 -   0bytes=416 159 744  re-xmits=0131046 ( 45.8%) slice=0112 -   0bytes=417 790 464  re-xmits=0131540 ( 45.8%) slice=0112 -   0bytes=417 953 536  re-xmits=0131965 ( 45.9%) slice=0112 -   0bytes=419 421 184  re-xmits=0132282 ( 45.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=19077
-bytes=421 704 192  re-xmits=0133179 ( 45.9%) slice=0112 -   0bytes=423 334 912  re-xmits=0133680 ( 45.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=10182
-bytes=425 944 064  re-xmits=0134196 ( 45.8%) slice=0112 -   0bytes=427 737 856  re-xmits=0135008 ( 45.9%) slice=0112 -   0bytes=427 900 928  re-xmits=0135330 ( 46.0%) slice=0112 -   0bytes=429 857 792  re-xmits=0136051 ( 46.0%) slice=0112 -   0bytes=433 282 304  re-xmits=0136375 ( 45.8%) slice=0112 -   0bytes=435 076 096  re-xmits=0137299 ( 45.9%) slice=0112 -   0bytes=437 848 320  re-xmits=0137653 ( 45.7%) slice=0112 -   0   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3235
-bytes=975 410 800  re-xmits=0051888 (  7.7%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3323
-bytes=984 023 040  re-xmits=0052262 (  7.7%) slice=0112 -   0bytes=991 780 608  re-xmits=0052402 (  7.6%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2983
-bytes=     977 931K re-xmits=0053055 (  7.7%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3001
-bytes=     987 574K re-xmits=0053772 (  7.7%) slice=0112 -   0bytes=     995 904K re-xmits=0053772 (  7.6%) slice=0112 -   0bytes=  1 003 545K re-xmits=0053929 (  7.6%) slice=0112 -   0bytes=  1 015 287K re-xmits=0054149 (  7.5%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3037
-bytes=  1 020 923K re-xmits=0054508 (  7.5%) slice=0112 -   0bytes=  1 024 991K re-xmits=0055255 (  7.6%) slice=0112 -   0bytes=  1 036 672K re-xmits=0055542 (  7.6%) slice=0112 -   0bytes=  1 043 451K re-xmits=0055781 (  7.6%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2875
-bytes=  1 048 388K re-xmits=0056224 (  7.6%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2963
-bytes=  1 054 367K re-xmits=0056394 (  7.6%) slice=0112 -   0bytes=  1 065 792K re-xmits=0056793 (  7.5%) slice=0112 -   0bytes=  1 071 901K re-xmits=0057049 (  7.5%) slice=0112 -   0bytes=  1 077 440K re-xmits=0057150 (  7.5%) slice=0112 -   0bytes=  1 085 170K re-xmits=0057697 (  7.5%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2128
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2349
-bytes=  1 091 947K re-xmits=0058146 (  7.5%) slice=0112 -   0bytes=  1 097 610K re-xmits=0058311 (  7.5%) slice=0112 -   0bytes=  1 106 139K re-xmits=0058554 (  7.5%) slice=0112 -   0bytes=  1 109 262K re-xmits=0058646 (  7.5%) slice=0112 -   0bytes=  1 115 250K re-xmits=0058986 (  7.5%) slice=0112 -   0bytes=  1 118 208K re-xmits=0059013 (  7.5%) slice=0112 -   0bytes=  1 124 032K re-xmits=0059054 (  7.4%) slice=0112 -   0bytes=  1 129 856K re-xmits=0059062 (  7.4%) slice=0112 -   0bytes=  1 138 691K re-xmits=0059339 (  7.4%) slice=0112 -   0bytes=  1 144 991K re-xmits=0059339 (  7.3%) slice=0112 -   0bytes=  1 147 328K re-xmits=0059402 (  7.3%) slice=0112 -   0bytes=  1 153 946K re-xmits=0059842 (  7.3%) slice=0112 -   0bytes=  1 159 607K re-xmits=0060302 (  7.3%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3030
-bytes=  1 162 473K re-xmits=0060453 (  7.3%) slice=0112 -   0bytes=  1 165 818K re-xmits=0060938 (  7.4%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3867
-bytes=  1 174 027K re-xmits=0061393 (  7.4%) slice=0112 -   0bytes=  1 182 272K re-xmits=0061489 (  7.3%) slice=0112 -   0bytes=  1 190 644K re-xmits=0061534 (  7.3%) slice=0112 -   0bytes=  1 193 920K re-xmits=0061817 (  7.3%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2752
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2990
-bytes=  1 201 491K re-xmits=0062060 (  7.3%) slice=0112 -   0bytes=  1 208 427K re-xmits=0062152 (  7.3%) slice=0112 -   0bytes=  1 214 090K re-xmits=0062352 (  7.3%) slice=0112 -   0bytes=  1 217 216K re-xmits=0062352 (  7.2%) slice=0112 -   0bytes=  1 223 040K re-xmits=0062352 (  7.2%) slice=0112 -   0bytes=  1 228 864K re-xmits=0062542 (  7.2%) slice=0112 -   0bytes=  1 235 482K re-xmits=0063329 (  7.2%) slice=0112 -   0bytes=  1 241 303K re-xmits=0063540 (  7.2%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2849
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2693
-bytes=  1 247 921K re-xmits=0064022 (  7.2%) slice=0112 -   0bytes=  1 249 832K re-xmits=0064249 (  7.3%) slice=0112 -   0bytes=  1 257 984K re-xmits=0064870 (  7.3%) slice=0112 -   0bytes=  1 267 207K re-xmits=0064949 (  7.2%) slice=0112 -   0bytes=  1 272 180K re-xmits=0065126 (  7.2%) slice=0112 -   0bytes=  1 278 158K re-xmits=0065465 (  7.2%) slice=0112 -   0bytes=  1 283 828K re-xmits=0065588 (  7.2%) slice=0112 -   0bytes=  1 290 126K re-xmits=0065697 (  7.2%) slice=0112 -   0bytes=  1 295 946K re-xmits=0065697 (  7.2%) slice=0112 -   0bytes=  1 303 201K re-xmits=0065738 (  7.1%) slice=0112 -   0bytes=  1 310 400K re-xmits=0065773 (  7.1%) slice=0112 -   0bytes=  1 318 926K re-xmits=0065980 (  7.1%) slice=0112 -   0bytes=  1 320 519K re-xmits=0066269 (  7.1%) slice=0112 -   0bytes=  1 330 101K re-xmits=0066805 (  7.1%) slice=0112 -   0bytes=  1 333 696K re-xmits=0066868 (  7.1%) slice=0112 -   0bytes=  1 341 587K re-xmits=0067037 (  7.1%) slice=0112 -   0bytes=  1 347 407K re-xmits=0067162 (  7.0%) slice=0112 -   0bytes=  1 351 168K re-xmits=0067241 (  7.0%) slice=0112 -   0bytes=  1 353 074K re-xmits=0067283 (  7.0%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2239
-bytes=  1 354 667K re-xmits=0067530 (  7.0%) slice=0112 -   0bytes=  1 363 515K re-xmits=0068118 (  7.1%) slice=0112 -   0bytes=  1 368 640K re-xmits=0068144 (  7.0%) slice=0112 -   0bytes=  1 374 464K re-xmits=0068398 (  7.0%) slice=0112 -   0bytes=  1 375 099K re-xmits=0068398 (  7.0%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2980
-bytes=  1 381 874K re-xmits=0068780 (  7.0%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2782
-bytes=  1 391 936K re-xmits=0068920 (  7.0%) slice=0112 -   0bytes=  1 397 760K re-xmits=0068995 (  7.0%) slice=0112 -   0bytes=  1 403 584K re-xmits=0069069 (  6.9%) slice=0112 -   0bytes=  1 409 408K re-xmits=0069495 (  7.0%) slice=0112 -   0bytes=  1 412 110K re-xmits=0069578 (  7.0%) slice=0112 -   0bytes=  1 415 232K re-xmits=0069613 (  6.9%) slice=0112 -   0bytes=  1 421 056K re-xmits=0069774 (  6.9%) slice=0112 -   0bytes=  1 426 880K re-xmits=0069859 (  6.9%) slice=0112 -   0bytes=  1 434 451K re-xmits=0070070 (  6.9%) slice=0112 -   0bytes=  1 440 271K re-xmits=0070070 (  6.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2936
-bytes=  1 445 943K re-xmits=0070139 (  6.8%) slice=0112 -   0bytes=  1 450 176K re-xmits=0070259 (  6.8%) slice=0112 -   0bytes=  1 457 431K re-xmits=0070438 (  6.8%) slice=0112 -   0bytes=  1 461 824K re-xmits=0070801 (  6.8%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2856
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2600
-bytes=  1 468 283K re-xmits=0071278 (  6.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2749
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2785
-bytes=  1 473 061K re-xmits=0071455 (  6.8%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3163
-bytes=  1 473 538K re-xmits=0071603 (  6.9%) slice=0112 -   0bytes=  1 475 927K re-xmits=0071685 (  6.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3169
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2902
-bytes=  1 485 120K re-xmits=0072448 (  6.9%) slice=0112 -   0bytes=  1 490 944K re-xmits=0072573 (  6.9%) slice=0112 -   0bytes=  1 498 835K re-xmits=0072776 (  6.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3513
-bytes=  1 502 495K re-xmits=0073010 (  6.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=4325
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3663
-bytes=  1 511 438K re-xmits=0073542 (  6.9%) slice=0112 -   0bytes=  1 517 895K re-xmits=0073764 (  6.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2726
-bytes=  1 523 715K re-xmits=0074000 (  6.9%) slice=0112 -   0bytes=  1 529 387K re-xmits=0074162 (  6.8%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2318
-bytes=  1 536 648K re-xmits=0074746 (  6.9%) slice=0112 -   0bytes=  1 538 330K re-xmits=0074858 (  6.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2745
-bytes=  1 544 787K re-xmits=0074958 (  6.8%) slice=0112 -   0bytes=  1 551 086K re-xmits=0075526 (  6.9%) slice=0112 -   0bytes=  1 559 613K re-xmits=0076003 (  6.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2848
-bytes=  1 563 523K re-xmits=0076117 (  6.9%) slice=0112 -   0bytes=  1 569 661K re-xmits=0076199 (  6.9%) slice=0112 -   0bytes=  1 578 304K re-xmits=0076420 (  6.8%) slice=0112 -   0bytes=  1 584 128K re-xmits=0076429 (  6.8%) slice=0112 -   0bytes=  1 590 331K re-xmits=0076989 (  6.8%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3276
-bytes=  1 595 776K re-xmits=0077399 (  6.8%) slice=0112 -   0bytes=  1 601 600K re-xmits=0077399 (  6.8%) slice=0112 -   0bytes=  1 607 424K re-xmits=0077399 (  6.8%) slice=0112 -   0bytes=  1 609 972K re-xmits=0077822 (  6.8%) slice=0112 -   0bytes=  1 616 428K re-xmits=0078341 (  6.8%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2918
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3005
-bytes=  1 622 407K re-xmits=0078903 (  6.9%) slice=0112 -   0bytes=  1 630 720K re-xmits=0079305 (  6.9%) slice=0112 -   0bytes=  1 633 903K re-xmits=0079314 (  6.9%) slice=0112 -   0bytes=  1 639 723K re-xmits=0079628 (  6.9%) slice=0112 -   0bytes=  1 647 941K re-xmits=0079813 (  6.8%) slice=0112 -   0bytes=  1 648 192K re-xmits=0079813 (  6.8%) slice=0112 -   0) slice=0112 -   0bytes=  4 694 144K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 699 968K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 705 792K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 711 616K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 717 440K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 724 219K re-xmits=0031521 (  0.9%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=236
-bytes=  4 734 912K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 741 847K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 748 623K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 754 603K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 760 423K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 766 723K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 772 543K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 779 318K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 784 343K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 790 163K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 795 982K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 801 963K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 807 783K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 810 624K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 818 513K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 828 096K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 839 744K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 850 664K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 859 279K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 871 079K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 883 038K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 892 160K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 901 139K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 903 808K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 915 456K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 923 819K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 929 799K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 941 759K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 950 400K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 962 048K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 967 872K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 977 638K re-xmits=0031521 (  0.9%) slice=0112 -   0bytes=  4 985 344K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  4 996 992K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 008 640K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 020 288K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 031 936K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 043 584K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 055 232K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 061 056K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 070 063K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 078 528K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 084 352K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 093 343K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 101 824K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 111 123K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 119 296K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 130 944K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 140 107K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 148 416K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 154 240K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 164 187K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 171 712K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 179 919K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 189 184K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 197 538K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 206 656K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 218 304K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 229 952K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 238 631K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 247 424K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 256 411K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 264 896K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 270 720K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 280 171K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 288 192K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 299 840K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 311 488K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 326 795K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 334 784K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 344 589K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 349 931K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 358 080K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 363 904K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 375 552K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 387 200K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 393 024K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 402 655K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 410 496K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 420 295K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 427 968K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 433 792K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 439 616K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 445 440K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 456 994K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 468 736K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 477 258K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 486 208K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 492 032K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 501 498K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 509 504K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 517 398K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 524 651K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 532 800K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 538 624K re-xmits=0031521 (  0.8%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=142
-bytes=  5 548 107K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 556 096K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 561 920K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 567 744K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 577 530K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 585 103K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 593 427K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 599 886K re-xmits=0031521 (  0.8%) slice=0112 -   0bytes=  5 608 512K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 617 826K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 625 984K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 631 808K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 641 587K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 647 407K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 655 104K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 664 587K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 672 576K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 682 371K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 690 048K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 695 872K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 704 871K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 713 344K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 722 651K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 730 816K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 736 640K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 748 288K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 757 770K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 763 591K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 771 584K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 781 531K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 789 056K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 794 880K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 804 198K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 810 338K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 818 176K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 824 000K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 833 483K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 841 472K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 853 120K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 862 127K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 870 592K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 879 747K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 888 064K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 896 436K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 901 463K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 911 360K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 920 363K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 928 731K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 935 607K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 940 480K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 948 523K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 952 128K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 958 267K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 959 063K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 966 478K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 978 119K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 984 098K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 992 896K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  5 998 720K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 004 544K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 010 368K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 016 192K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 022 016K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 027 840K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 034 775K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 039 488K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 045 312K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 051 771K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 058 865K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 067 075K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 071 303K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 074 432K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 080 256K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 088 782K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 094 602K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 100 583K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 109 376K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 115 200K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 121 024K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 126 848K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 132 672K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 144 320K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 158 827K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 164 807K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 170 786K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 179 264K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 188 567K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 196 736K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 202 560K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 212 326K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 218 146K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 225 856K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 235 339K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 241 318K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 252 966K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 260 800K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 266 624K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 272 448K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 278 272K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 284 096K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 293 259K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 299 079K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 307 392K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 313 216K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 319 040K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 328 683K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 334 502K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 342 233K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 349 271K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 355 890K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 359 808K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 365 632K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 372 886K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 384 059K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 388 928K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 394 752K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 400 576K re-xmits=0031521 (  0.7%) slice=0112 -   0bytes=  6 409 563K re-xmits=0031521 (  0.6%) slice=0112 -   0bytes=  6 415 383K re-xmits=0031521 (  0.6%) slice=0112 -   0bytes=  6 421 203K re-xmits=0031521 (  0.6%) slice=0112 -   0bytes=  6 423 872K re-xmits=0031521 (  0.6%) slice=0112 -   0bytes=  6 429 696K re-xmits=0031521 (  0.6%) slice=0112 -   0bytes=  6 435 520K re-xmits=0031521 (  0.6%) slice=0112 -   0=0007425 (  0.2%) slice=0112 -   0bytes=  5 136 768K re-xmits=0007425 (  0.2%) slice=0112 -   0bytes=  5 144 343K re-xmits=0007425 (  0.2%) slice=0112 -   0bytes=  5 148 416K re-xmits=0007425 (  0.2%) slice=0112 -   0bytes=  5 156 918K re-xmits=0007425 (  0.2%) slice=0112 -   0bytes=  5 162 899K re-xmits=0007425 (  0.2%) slice=0112 -   0bytes=  5 168 879K re-xmits=0007425 (  0.2%) slice=0112 -   0bytes=  5 174 699K re-xmits=0007425 (  0.2%) slice=0112 -   0bytes=  5 180 519K re-xmits=0007425 (  0.2%) slice=0112 -   0) slice=0112 -   0bytes=  2 495 379K re-xmits=0108963 (  6.2%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3072
-bytes=  2 499 290K re-xmits=0109318 (  6.2%) slice=0112 -   0bytes=  2 503 112K re-xmits=0109462 (  6.2%) slice=0112 -   0bytes=  2 511 959K re-xmits=0109593 (  6.2%) slice=0112 -   0bytes=  2 518 734K re-xmits=0109785 (  6.1%) slice=0112 -   0bytes=  2 525 035K re-xmits=0109968 (  6.1%) slice=0112 -   0bytes=  2 533 440K re-xmits=0110044 (  6.1%) slice=0112 -   0bytes=  2 535 827K re-xmits=0110044 (  6.1%) slice=0112 -   0bytes=  2 541 647K re-xmits=0110071 (  6.1%) slice=0112 -   0bytes=  2 543 239K re-xmits=0110181 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3825
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3620
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=4316
-bytes=  2 550 912K re-xmits=0111117 (  6.1%) slice=0112 -   0bytes=  2 551 927K re-xmits=0111117 (  6.1%) slice=0112 -   0bytes=  2 558 543K re-xmits=0111645 (  6.2%) slice=0112 -   0bytes=  2 559 180K re-xmits=0111687 (  6.2%) slice=0112 -   0bytes=  2 564 843K re-xmits=0111727 (  6.1%) slice=0112 -   0bytes=  2 570 610K re-xmits=0111793 (  6.1%) slice=0112 -   0bytes=  2 574 685K re-xmits=0111925 (  6.1%) slice=0112 -   0bytes=  2 576 431K re-xmits=0111925 (  6.1%) slice=0112 -   0bytes=  2 583 057K re-xmits=0112339 (  6.1%) slice=0112 -   0bytes=  2 585 856K re-xmits=0112378 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3040
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2998
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2860
-bytes=  2 589 666K re-xmits=0112666 (  6.1%) slice=0112 -   0bytes=  2 591 680K re-xmits=0113190 (  6.2%) slice=0112 -   0bytes=  2 599 251K re-xmits=0113294 (  6.1%) slice=0112 -   0bytes=  2 603 328K re-xmits=0113294 (  6.1%) slice=0112 -   0bytes=  2 610 423K re-xmits=0113585 (  6.1%) slice=0112 -   0bytes=  2 617 198K re-xmits=0113585 (  6.1%) slice=0112 -   0bytes=  2 620 800K re-xmits=0113585 (  6.1%) slice=0112 -   0bytes=  2 623 339K re-xmits=0113846 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3342
-bytes=  2 629 159K re-xmits=0114032 (  6.1%) slice=0112 -   0bytes=  2 632 448K re-xmits=0114046 (  6.1%) slice=0112 -   0bytes=  2 639 223K re-xmits=0114263 (  6.1%) slice=0112 -   0bytes=  2 645 042K re-xmits=0114651 (  6.1%) slice=0112 -   0bytes=  2 649 920K re-xmits=0114722 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2941
-bytes=  2 656 218K re-xmits=0114837 (  6.1%) slice=0112 -   0bytes=  2 664 427K re-xmits=0114960 (  6.1%) slice=0112 -   0bytes=  2 669 940K re-xmits=0115060 (  6.1%) slice=0112 -   0bytes=  2 673 216K re-xmits=0115060 (  6.1%) slice=0112 -   0bytes=  2 675 911K re-xmits=0115120 (  6.1%) slice=0112 -   0bytes=  2 679 040K re-xmits=0115120 (  6.1%) slice=0112 -   0bytes=  2 684 864K re-xmits=0115197 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3510
-bytes=  2 690 688K re-xmits=0115540 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2379
-bytes=  2 693 076K re-xmits=0115884 (  6.1%) slice=0112 -   0bytes=  2 694 191K re-xmits=0116042 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2691
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2899
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3270
-bytes=  2 702 336K re-xmits=0116794 (  6.1%) slice=0112 -   0bytes=  2 708 160K re-xmits=0116829 (  6.1%) slice=0112 -   0bytes=  2 713 984K re-xmits=0116909 (  6.1%) slice=0112 -   0bytes=  2 719 808K re-xmits=0116977 (  6.1%) slice=0112 -   0bytes=  2 725 632K re-xmits=0117019 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3065
-bytes=  2 731 456K re-xmits=0117252 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2745
-bytes=  2 736 692K re-xmits=0117267 (  6.0%) slice=0112 -   0bytes=  2 740 283K re-xmits=0117437 (  6.0%) slice=0112 -   0bytes=  2 746 102K re-xmits=0117818 (  6.1%) slice=0112 -   0bytes=  2 752 403K re-xmits=0117858 (  6.0%) slice=0112 -   0bytes=  2 756 026K re-xmits=0117875 (  6.0%) slice=0112 -   0bytes=  2 757 618K re-xmits=0118111 (  6.0%) slice=0112 -   0bytes=  2 763 598K re-xmits=0118635 (  6.1%) slice=0112 -   0bytes=  2 763 758K re-xmits=0118837 (  6.1%) slice=0112 -   0bytes=  2 772 224K re-xmits=0119566 (  6.1%) slice=0112 -   0bytes=  2 775 249K re-xmits=0119780 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3283
-bytes=  2 781 218K re-xmits=0120064 (  6.1%) slice=0112 -   0bytes=  2 786 260K re-xmits=0120215 (  6.1%) slice=0112 -   0bytes=  2 789 696K re-xmits=0120265 (  6.1%) slice=0112 -   0bytes=  2 792 559K re-xmits=0120346 (  6.1%) slice=0112 -   0bytes=  2 798 379K re-xmits=0120346 (  6.1%) slice=0112 -   0bytes=  2 801 344K re-xmits=0120471 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3030
-bytes=  2 808 599K re-xmits=0121091 (  6.1%) slice=0112 -   0bytes=  2 814 419K re-xmits=0121162 (  6.1%) slice=0112 -   0bytes=  2 820 239K re-xmits=0121312 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2750
-bytes=  2 826 059K re-xmits=0121503 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3746
-bytes=  2 832 675K re-xmits=0122103 (  6.1%) slice=0112 -   0bytes=  2 838 335K re-xmits=0122284 (  6.1%) slice=0112 -   0bytes=  2 844 155K re-xmits=0122709 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=3040
-bytes=  2 851 089K re-xmits=0123145 (  6.1%) slice=0112 -   0bytes=  2 856 751K re-xmits=0123148 (  6.1%) slice=0112 -   0bytes=  2 859 584K re-xmits=0123214 (  6.1%) slice=0112 -   0bytes=  2 865 408K re-xmits=0123214 (  6.1%) slice=0112 -   0bytes=  2 868 711K re-xmits=0123369 (  6.1%) slice=0112 -   0
-Timeout notAnswered=[0] notReady=[0] nrAns=0 nrRead=0 nrPart=1 avg=2828
-bytes=  2 871 232K re-xmits=0123477 (  6.1%) slice=0112 -   0swered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1442
-bytes=812 354 816  re-xmits=0098948 ( 17.7%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1969
-bytes=814 637 824  re-xmits=0099431 ( 17.7%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2744
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1882
-bytes=820 182 272  re-xmits=0101326 ( 17.9%) slice=0112 -   0bytes=820 345 344  re-xmits=0101594 ( 18.0%) slice=0112 -   1bytes=821 486 848  re-xmits=0101798 ( 18.0%) slice=0112 -   1bytes=827 194 368  re-xmits=0102018 ( 17.9%) slice=0112 -   0bytes=831 760 384  re-xmits=0102726 ( 17.9%) slice=0112 -   0bytes=835 184 896  re-xmits=0102858 ( 17.9%) slice=0112 -   0
-Timeout notAnswered=[1] notReady=[1] nrAns=1 nrRead=1 nrPart=2 avg=1117
-bytes=840 403 200  re-xmits=0103130 ( 17.8%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2039
-bytes=844 316 928  re-xmits=0104955 ( 18.0%) slice=0112 -   1bytes=857 688 832  re-xmits=0106283 ( 18.0%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=3381
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2620
-bytes=862 580 992  re-xmits=0107045 ( 18.0%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1203
-bytes=864 048 640  re-xmits=0107722 ( 18.1%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2310
-bytes=872 202 240  re-xmits=0109707 ( 18.3%) slice=0112 -   0
-Timeout notAnswered=[1] notReady=[1] nrAns=1 nrRead=1 nrPart=2 avg=1601
-bytes=875 789 824  re-xmits=0109817 ( 18.2%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1223
-bytes=877 420 544  re-xmits=0110219 ( 18.2%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2489
-bytes=879 703 552  re-xmits=0110872 ( 18.3%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1594
-bytes=882 475 776  re-xmits=0111333 ( 18.3%) slice=0112 -   1bytes=888 835 584  re-xmits=0112160 ( 18.3%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=220
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=161
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=117
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=107
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=117
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=107
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=105
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=107
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=108
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=116
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=127
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=109
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=96
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=119
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=125
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=124
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=114
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=97
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=132
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=154
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=118
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=116
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=137
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=145
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=140
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=119
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=136
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=707
-bytes=903 022 848  re-xmits=0112446 ( 18.1%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2072
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1602
-bytes=905 632 000  re-xmits=0113450 ( 18.2%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=489
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=266
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=181
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=111
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=106
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=102
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=101
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=106
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=95
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=96
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=97
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=93
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=95
-bytes=914 927 104  re-xmits=0114517 ( 18.2%) slice=0112 -   1bytes=915 742 464  re-xmits=0114892 ( 18.2%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=3261
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=424
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=542
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=557
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=384
-bytes=923 243 776  re-xmits=0116551 ( 18.3%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=373
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=157
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=412
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=422
-bytes=924 711 424  re-xmits=0116814 ( 18.3%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=237
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=153
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=115
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=98
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=99
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=92
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=972
-bytes=927 483 648  re-xmits=0117432 ( 18.4%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=210
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=119
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=129
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=107
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=109
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=97
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=97
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=94
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=98
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=188
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=105
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=101
-bytes=931 071 232  re-xmits=0117493 ( 18.3%) slice=0112 -   1
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=1393
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=912
-bytes=943 627 776  re-xmits=0119311 ( 18.4%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=211
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=119
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=96
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=94
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=103
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=107
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=355
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=660
-bytes=947 704 576  re-xmits=0119738 ( 18.3%) slice=0112 -   1bytes=950 476 800  re-xmits=0120026 ( 18.3%) slice=0112 -   1bytes=955 205 888  re-xmits=0121051 ( 18.4%) slice=0112 -   1
-Timeout notAnswered=[1] notReady=[1] nrAns=1 nrRead=1 nrPart=2 avg=1952
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2207
-bytes=958 630 400  re-xmits=0121536 ( 18.4%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1369
-bytes=964 500 992  re-xmits=0121648 ( 18.3%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=399
-bytes=966 457 856  re-xmits=0121834 ( 18.3%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1989
-bytes=978 525 184  re-xmits=0123916 ( 18.4%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=223
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1116
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1320
-bytes=983 580 416  re-xmits=0124729 ( 18.4%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1484
-bytes=986 678 784  re-xmits=0125903 ( 18.5%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2151
-bytes=988 961 792  re-xmits=0127043 ( 18.7%) slice=0112 -   1
-Timeout notAnswered=[0] notReady=[0] nrAns=1 nrRead=1 nrPart=2 avg=2501
-bytes=991 244 800  re-xmits=0127690 ( 18.7%) slice=0112 -   0bytes=997 115 392  re-xmits=0128155 ( 18.7%) slice=0112 -   1bytes=997 767 680  re-xmits=0128593 ( 18.7%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1585
-bytes=     980 274K re-xmits=0129700 ( 18.8%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1505
-bytes=     984 893K re-xmits=0130009 ( 18.7%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1025
-bytes=     986 963K re-xmits=0130710 ( 18.8%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2027
-bytes=     997 473K re-xmits=0132457 ( 18.8%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1572
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1177
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2911
-bytes=  1 006 710K re-xmits=0133213 ( 18.8%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1783
-bytes=  1 009 258K re-xmits=0134109 ( 18.8%) slice=0112 -   0bytes=  1 010 054K re-xmits=0134356 ( 18.9%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=3737
-bytes=  1 010 213K re-xmits=0134617 ( 18.9%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2814
-bytes=  1 017 061K re-xmits=0136244 ( 19.0%) slice=0112 -   0bytes=  1 019 450K re-xmits=0136374 ( 19.0%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2534
-bytes=  1 030 208K re-xmits=0137059 ( 18.9%) slice=0112 -   0bytes=  1 033 639K re-xmits=0137281 ( 18.8%) slice=0112 -   0bytes=  1 039 458K re-xmits=0137767 ( 18.8%) slice=0112 -   0bytes=  1 042 484K re-xmits=0137878 ( 18.8%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1871
-bytes=  1 045 828K re-xmits=0138612 ( 18.8%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2170
-bytes=  1 049 013K re-xmits=0139989 ( 18.9%) slice=0112 -   0
-Timeout notAnswered=[1] notReady=[1] nrAns=1 nrRead=1 nrPart=2 avg=2594
-bytes=  1 054 994K re-xmits=0140278 ( 18.9%) slice=0112 -   0
-Timeout notAnswered=[1] notReady=[1] nrAns=1 nrRead=1 nrPart=2 avg=2490
-bytes=  1 061 770K re-xmits=0140669 ( 18.8%) slice=0112 -   0bytes=  1 068 706K re-xmits=0141205 ( 18.7%) slice=0112 -   1bytes=  1 074 371K re-xmits=0141426 ( 18.7%) slice=0112 -   0bytes=  1 080 142K re-xmits=0141426 ( 18.6%) slice=0112 -   0bytes=  1 085 812K re-xmits=0141426 ( 18.5%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2800
-bytes=  1 088 041K re-xmits=0141658 ( 18.5%) slice=0112 -   1bytes=  1 094 912K re-xmits=0142593 ( 18.5%) slice=0112 -   0bytes=  1 100 736K re-xmits=0142662 ( 18.4%) slice=0112 -   0bytes=  1 106 714K re-xmits=0143082 ( 18.3%) slice=0112 -   1bytes=  1 115 082K re-xmits=0143128 ( 18.2%) slice=0112 -   1bytes=  1 120 747K re-xmits=0143132 ( 18.1%) slice=0112 -   0bytes=  1 124 032K re-xmits=0143132 ( 18.1%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2581
-bytes=  1 132 878K re-xmits=0143367 ( 17.9%) slice=0112 -   0bytes=  1 141 504K re-xmits=0143655 ( 17.8%) slice=0112 -   1bytes=  1 144 679K re-xmits=0144014 ( 17.8%) slice=0112 -   1bytes=  1 147 328K re-xmits=0144338 ( 17.8%) slice=0112 -   0bytes=  1 147 487K re-xmits=0144626 ( 17.9%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1714
-bytes=  1 152 742K re-xmits=0145682 ( 17.9%) slice=0112 -   1bytes=  1 154 653K re-xmits=0145803 ( 17.9%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2191
-bytes=  1 160 474K re-xmits=0147181 ( 18.0%) slice=0112 -   0bytes=  1 164 800K re-xmits=0147181 ( 17.9%) slice=0112 -   0bytes=  1 167 985K re-xmits=0147244 ( 17.9%) slice=0112 -   0bytes=  1 176 448K re-xmits=0147372 ( 17.8%) slice=0112 -   1bytes=  1 182 272K re-xmits=0147962 ( 17.7%) slice=0112 -   0bytes=  1 189 687K re-xmits=0148254 ( 17.7%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1579
-bytes=  1 192 872K re-xmits=0148434 ( 17.6%) slice=0112 -   1bytes=  1 201 491K re-xmits=0149181 ( 17.6%) slice=0112 -   0bytes=  1 205 568K re-xmits=0149423 ( 17.6%) slice=0112 -   0bytes=  1 213 618K re-xmits=0149702 ( 17.5%) slice=0112 -   0bytes=  1 219 439K re-xmits=0150010 ( 17.4%) slice=0112 -   0bytes=  1 226 852K re-xmits=0150310 ( 17.4%) slice=0112 -   0bytes=  1 232 515K re-xmits=0150608 ( 17.3%) slice=0112 -   1bytes=  1 238 187K re-xmits=0150739 ( 17.3%) slice=0112 -   0bytes=  1 240 512K re-xmits=0150972 ( 17.3%) slice=0112 -   0bytes=  1 246 077K re-xmits=0151928 ( 17.3%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=2262
-bytes=  1 250 536K re-xmits=0152544 ( 17.3%) slice=0112 -   0bytes=  1 254 517K re-xmits=0153264 ( 17.3%) slice=0112 -   0bytes=  1 257 383K re-xmits=0153387 ( 17.3%) slice=0112 -   1bytes=  1 263 808K re-xmits=0153912 ( 17.3%) slice=0112 -   0bytes=  1 269 786K re-xmits=0154846 ( 17.3%) slice=0112 -   1bytes=  1 274 086K re-xmits=0155020 ( 17.3%) slice=0112 -   0bytes=  1 275 838K re-xmits=0155161 ( 17.2%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1820
-bytes=  1 277 749K re-xmits=0155698 ( 17.3%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=1820
-bytes=  1 283 729K re-xmits=0157060 ( 17.3%) slice=0112 -   0
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=196
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=221
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=247
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=244
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=246
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=289
-bytes=  1 289 391K re-xmits=0157060 ( 17.3%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=187
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=197
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=889
-bytes=  1 294 010K re-xmits=0157252 ( 17.2%) slice=0112 -   1
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=286
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=199
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=129
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=97
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=95
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=102
-Timeout notAnswered=[0,1] notReady=[0,1] nrAns=0 nrRead=0 nrPart=2 avg=103
