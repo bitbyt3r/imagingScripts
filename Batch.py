@@ -41,10 +41,12 @@ class Batch:
       self.clients.append(client)
       client.batch = self
       return True
-    if self.clientSelect == "NameMatch" and self.clientCriteria in client.name and selectType == "NameMatch":
-      self.clients.append(client)
-      client.batch = self
-      return True
+    if self.clientSelect == "NameMatch" and selectType == "NameMatch":
+      for i in self.clientCriteria.split(","):
+        if i in client.name:
+          self.clients.append(client)
+          client.batch = self
+          return True
     return False
       
   def run(self):
