@@ -53,7 +53,7 @@ class Batch:
       subconfig = dict(self.config)
       subconfig['section'] += "-sub%d" % i
       subconfig['baseport'] = self.basePort + offset
-      offset += 1
+      offset += 2
       self.subbatches.append(Batch(subconfig))
     for i in xrange(len(self.clients)):
       self.subbatches[i%self.numsubbatches].clients.append(self.clients[i])

@@ -1,15 +1,12 @@
 #!/usr/bin/python -W ignore::DeprecationWarning
 import xmlrpclib
 import time
-import getpass
 import sys
 import parted
 import os
-import threading
-import pyudev
-import termios
 import socket
 import subprocess
+import advancedInput
 
 # TODO: This should be more intelligent
 DRIVE_PATH = "/dev/sda"
@@ -17,9 +14,10 @@ DRIVE_PATH = "/dev/sda"
 if os.geteuid() != 0:
   sys.exit("You will need to be root to run this script successfully.")
 
-if '-s' in sys.argv:
-  os.system("yum install -y partimage udpcast python-pyudev nano")
+OK = "[\033[32m  Ok  \033[0m] "
+FAIL = "[\033[31mFailed\033[0m] "
 
+# Simple wrapper to catch xmlrpc exceptions
 def remoteCall(func, *args):
     try:
         ret = func(*args)
@@ -27,6 +25,8 @@ def remoteCall(func, *args):
     except xmlrpclib.Fault as e:
         print e
 
+# Check to make sure partitions on disk match the required
+# partitions from the server
 def verifyPartitions(imageParts):
   disk = parted.disk.Disk(device=parted.device.Device(path=DRIVE_PATH))
   localParts = []
@@ -59,6 +59,7 @@ def verifyPartitions(imageParts):
         localPartSettings.add(tuple(tup))
     return imagePartSettings <= localPartSettings
     
+# Run the given command in a shell. If getProc, returns a process object
 def cmd(command, getProc=False):
   print command
   if getProc:
@@ -67,149 +68,109 @@ def cmd(command, getProc=False):
   else:
     return os.system(command) == 0
 
+# Initiate a udp-receiver and pipe it into the necessary imaging tool. This is 
+# done outside of python on purpose, it should not be slowed down by anything.
 def udpCast(partition, serverConfig, statusCallback):
   if partition['type'] in ['7','f']:
-    statusCallback("begun", 0)
-    os.system("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O {path} -".format(port=serverConfig['portbase'], path=partition['path']))
-    statusCallback("gettingimage", 0)
+    return not os.system("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O {path} -".format(port=serverConfig['portbase'], path=partition['path']))
   elif partition['type'] in ['83','82']:
-    os.system("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | partimage -b restore {path} stdin".format(port=serverConfig['portbase'], path=partition['path']))
-    statusCallback("ext",0)
+    return not os.system("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | partimage -b restore {path} stdin".format(port=serverConfig['portbase'], path=partition['path']))
   elif partition['type'] in ['5']:
-    os.system("mkswap {path}".format(path=partition['path']))
+    return not os.system("mkswap {path}".format(path=partition['path']))
   else:
-    statusCallback("error",0)
-    sys.exit("Unknown partition type %s" % partition['type'])
+    sys.exit(FAIL+"Unknown partition type %s" % partition['type'])
 
 def repartition(shouldRepart, partMap):
   if not shouldRepart:
-    return
+    return True
   if not partMap:
-    sys.exit("Error: No partition map received.")
+    sys.exit(FAIL+"No partition map received.")
   partMapFile = "/tmp/partMap"
   with open(partMapFile, "w") as partFile:
     partFile.write(partMap)
-  os.system("swapoff -a")
-  os.system("sfdisk --force "+DRIVE_PATH+" < "+partMapFile)
-  os.system("partprobe") 
-  os.system("swapon /dev/sda2") 
-
-response = None
-responseFile = []
-responseFileName = "build.conf"
-def userInput():
-  global response
-  response = raw_input("")
-
-def passInput():
-  global response
-  response = getpass.getpass("")
-  
-def enable_echo(fd, enabled):
-  (iflag, oflag, cflag, lflag, ispeed, ospeed, cc) = termios.tcgetattr(fd)
-  if enabled:
-    lflag |= termios.ECHO
-  else:
-    lflag &= ~termios.ECHO
-  new_attr = [iflag, oflag, cflag, lflag, ispeed, ospeed, cc]
-  termios.tcsetattr(fd, termios.TCSANOW, new_attr)
-  
-def prompt(text="", password=False):
-  global response
-  response = ""
-  print text,
-  prompt = None
-  if password:
-    prompt = threading.Thread(target=passInput)
-  else:
-    prompt = threading.Thread(target=userInput)
-  prompt.daemon = True
-  prompt.start()
-  while not response:
-    for i in responseFile:
-      if text in i:
-        answer = i.split(text)[1].strip()
-        if answer:
-          prompt.join(0)
-          if not password:
-            print answer
-          enable_echo(sys.stdin.fileno(), True)
-          return answer
-  prompt.join(0)
-  enable_echo(sys.stdin.fileno(), True)
-  return response
-    
-# Client Procedure:
-# Get username/password
-# Contact server, collect sid
-# Request Partition layout
-# Verify Drive Format
-# Wait for server to start
-# Spawn udpcast session(s)
-
-context = pyudev.Context()
-monitor = pyudev.Monitor.from_netlink(context)
-monitor.filter_by('block')
-mountDir = "/mnt/responseDev"
-def readResponseFile(action, device):
-  if 'ID_FS_TYPE' in device and action == 'add':
-    if not os.path.exists(mountDir):
-      os.makedirs(mountDir)
-    os.system("mount {device} {mountDir}".format(device=device.device_node, mountDir=mountDir))
-    if responseFileName in os.listdir(mountDir):
-      with open(os.path.join(mountDir, responseFileName), "r") as fileHandle:
-        global responseFile
-        responseFile = fileHandle.readlines()
-    os.system("umount {mountDir}".format(mountDir=mountDir))
-observer = pyudev.MonitorObserver(monitor, readResponseFile)
-observer.start()
+  # This is a bit weird because things exit 0 on success, which python interprets
+  # as False. All of the commands have succeeded if none return True.
+  return not any([os.system("swapoff -a"),
+                  os.system("sfdisk --force "+DRIVE_PATH+" < "+partMapFile),
+                  os.system("partprobe"),
+                  os.system("swapon /dev/sda2"),])
         
 def waitForServer(server, sid):
   while not(remoteCall(server.status, sid)):
     time.sleep(1)
-        
+
+# Get all of the server options from the user or a build.conf file
+getInput = advancedInput.HybridListener(filename="build.conf")
+
+# The sid is the unique key that identifies this client to the server.
 sid = ""
-server = xmlrpclib.ServerProxy(prompt("Server:"))
-while True:
-  username = prompt("User:")
-  password = prompt("Pass:", password=True)
+server = xmlrpclib.ServerProxy(getInput.prompt("Server:"))
+while not sid:
+  username = getInput.prompt("User:")
+  password = getInput.prompt("Pass:", password=True)
   username = username.strip()
   password = password.strip()
-  sid = remoteCall(server.login, username, password)
-  if sid:
-    break
+  try:
+    sid = remoteCall(server.login, username, password)
+  except socket.error:
+    getInput.stop()
+    sys.exit(FAIL+"Could not connect to server")
     
-observer.stop()
-enable_echo(sys.stdin.fileno(), True)
+    
+# Remove the udev hooks that listen for device insertion
+getInput.stop()
 
+if sid:
+  print OK+"Logged in"
+else:
+  print FAIL+"Could not log in"
+
+# This is a commonly used server function, so I wrap it more nicely
 def setStatus(type, num):
   remoteCall(server.updateStatus, sid, (type, num))
 
 name = socket.gethostname()
 remoteCall(server.registerClient, sid, name)
 partitions = remoteCall(server.partList, sid)
+
+# The server has to tell us when to start imaging
 setStatus("waiting", 0)
 waitForServer(server, sid)
-serverConfig = remoteCall(server.getConfig, sid)
-setStatus("getconf", 0)
-repartition(*remoteCall(server.getPartMap, sid))
-for i in partitions:
-  if i['type'] in ['7','f']:
-    setStatus("format-ntfs",0)
-    os.system("mkfs.ntfs -F -f -L Windows {path}".format(path=i['path']))
 
-setStatus("reparted", 0)
-if verifyPartitions(partitions):
-  setStatus("imaging", 0)
-  for i in partitions:
-    udpCast(i, serverConfig, setStatus)
+# We cannot pull our config until the server has told us it is ready.
+# Do that now:
+setStatus("gettingConfig", 0)
+serverConfig = remoteCall(server.getConfig, sid)
+if serverConfig:
+  print OK+"Got Configuration"
 else:
+  print FAIL+"Could not get configuration"
+
+# This server command will return a tuple:
+#  -A boolean of whether to rewrite the partition table
+#  -The partition table to write, in a form compatible
+#   with sfdisk
+setStatus("reparting", 0)
+if repartition(*remoteCall(server.getPartMap, sid)):
+  print OK+"Successfully repartitioned"
+else:
+  print FAIL+"Could not repartition"
+
+# Actually image the system
+if verifyPartitions(partitions):
+  print OK+"Partitions are valid"
+  for i in partitions:
+    setStatus("imaging", int(i['number']))
+    if udpCast(i, serverConfig, setStatus):
+      print OK+"Successfully imaged %s" % i['name']
+    else:
+      print FAIL+"Could not image %s" % i['name']
+else:
+  print FAIL+"Partitions are not valid!"
   setStatus("error", 1)
-  sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")
+  sys.exit(FAIL+"Error: The partitions on this system do not match the expected partitions received from the server.")
+  
+# All done! Log out and exit.
 setStatus("done", 0)
 remoteCall(server.logout, sid)
-os.system("mkdir /tmp/foo")
-os.system("mount /dev/sda1 /tmp/foo")
-os.chroot("/tmp/foo")
-os.system("/usr/csee/sbin/fixgrub.py -w")
-sys.exit("Success!")
+sys.exit(OK+"Success!")
