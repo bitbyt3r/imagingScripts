@@ -14,10 +14,10 @@ class Imager:
     for i in self.batch.clients:
       i.port = self.batch.basePort
       print "Imaging: %s on port %d" % (i.name, i.port)
-    sleep(2)
-    #self.endCallback(self.batch)
-    #return
     self.readyFunc(self.batch)
+    sleep(5)
+    self.endCallback(self.batch)
+    return
     for part in self.batch.image.partitions:
       # TODO: Add client monitoring
       partFile = ""

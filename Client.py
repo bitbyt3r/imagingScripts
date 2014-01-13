@@ -9,6 +9,7 @@ class Client:
     self.started = False
     self.startFunc = startFunc
     self.status = ("initialized", 0)
+    self.keyStore = {}
   
   def start(self):
     self.startFunc(self)

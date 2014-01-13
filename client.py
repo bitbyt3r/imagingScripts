@@ -72,9 +72,9 @@ def cmd(command, getProc=False):
 # done outside of python on purpose, it should not be slowed down by anything.
 def udpCast(partition, serverConfig, statusCallback):
   if partition['type'] in ['7','f']:
-    return not os.system("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | ntfsclone -r -O {path} -".format(port=serverConfig['portbase'], path=partition['path']))
+    return not os.system("udp-receiver --portbase {port} --nokbd --ttl 2 2>> /tmp/udp-receiver_stderr | gunzip -c - | tee >(md5sum>{checkfile}) >(ntfsclone -r -O {path} -)".format(port=serverConfig['portbase'], path=partition['path'], checkfile=partition['name']+".checksum"))
   elif partition['type'] in ['83','82']:
-    return not os.system("udp-receiver --portbase {port} --nokbd --ttl 2 --pipe \"gunzip -c -\" 2>> /tmp/udp-receiver_stderr | partimage -b restore {path} stdin".format(port=serverConfig['portbase'], path=partition['path']))
+    return not os.system("udp-receiver --portbase {port} --nokbd --ttl 2 2>> /tmp/udp-receiver_stderr | gunzip -c - | tee >(md5sum>{checkfile}) >(partimage -b restore {path} stdin)".format(port=serverConfig['portbase'], path=partition['path'], checkfile=partition['name']+".checksum"))
   elif partition['type'] in ['5']:
     return not os.system("mkswap {path}".format(path=partition['path']))
   else:
@@ -82,6 +82,7 @@ def udpCast(partition, serverConfig, statusCallback):
 
 def repartition(shouldRepart, partMap):
   if not shouldRepart:
+    print OK+"Skipping repartitioning"
     return True
   if not partMap:
     sys.exit(FAIL+"No partition map received.")
@@ -90,14 +91,19 @@ def repartition(shouldRepart, partMap):
     partFile.write(partMap)
   # This is a bit weird because things exit 0 on success, which python interprets
   # as False. All of the commands have succeeded if none return True.
-  return not any([os.system("swapoff -a"),
+  if not any([os.system("swapoff -a"),
                   os.system("sfdisk --force "+DRIVE_PATH+" < "+partMapFile),
                   os.system("partprobe"),
-                  os.system("swapon /dev/sda2"),])
+                  os.system("swapon /dev/sda2"),]):
+    print OK+"Repartitioning Successful"
+    return True
         
 def waitForServer(server, sid):
-  while not(remoteCall(server.status, sid)):
-    time.sleep(1)
+  try:
+    while not(remoteCall(server.status, sid)):
+      time.sleep(1)
+  except socket.error:
+    sys.exit(FAIL+"Lost server connection")
 
 # Get all of the server options from the user or a build.conf file
 getInput = advancedInput.HybridListener(filename="build.conf")
@@ -129,6 +135,9 @@ else:
 def setStatus(type, num):
   remoteCall(server.updateStatus, sid, (type, num))
 
+def setKey(name, val):
+  remoteCall(server.setKey, sid, (name, val))
+
 name = socket.gethostname()
 remoteCall(server.registerClient, sid, name)
 partitions = remoteCall(server.partList, sid)
@@ -151,9 +160,7 @@ else:
 #  -The partition table to write, in a form compatible
 #   with sfdisk
 setStatus("reparting", 0)
-if repartition(*remoteCall(server.getPartMap, sid)):
-  print OK+"Successfully repartitioned"
-else:
+if not repartition(*remoteCall(server.getPartMap, sid)):
   print FAIL+"Could not repartition"
 
 # Actually image the system
@@ -165,6 +172,9 @@ if verifyPartitions(partitions):
       print OK+"Successfully imaged %s" % i['name']
     else:
       print FAIL+"Could not image %s" % i['name']
+    if os.path.exists("./%s.checksum"%i['name']):
+      with open("./%s.checksum"%i['name'], "r") as checkFile:
+        setKey(i['name']+"-checksum", checkFile.read())
 else:
   print FAIL+"Partitions are not valid!"
   setStatus("error", 1)

@@ -6,6 +6,7 @@ import termios
 import getpass
 import imageClient
 import time
+import advancedInput
 
 response = None
 responseFile = []
@@ -28,8 +29,8 @@ def main():
   # but you cannot bootstrap cfengine while running it or before it is installed.
   # I take care of that below. Start() will start, and join() will return when
   # finished.
-  image = imageThread(config)
-  updaterpmThread = commandThread("/usr/csee/sbin/updaterpm --"+config['rpmmode'], config, name="updaterpm")
+  image = commandThread("/extra/imaging/client.py", config, name="Windows Imager")
+  updaterpmThread = commandThread("/usr/csee/sbin/updaterpm --"+config['rpmmode'], config, name="Updaterpm")
   cfengineBootstrap = commandThread("/var/cfengine/bin/cf-agent -B "+config['cfengineserver'], config, name="Cfengine Bootstrap")
   image.start()
   updaterpmThread.start()
@@ -56,7 +57,7 @@ def main():
   if completeSuccess:
     if config['debug']:
       print "Setting default init level", "\t[\033[32m  Ok  \033[0m]" 
-    elif os.system("/bin/sed -i 's/1/5/g' /etc/inittab"):
+    elif os.system("/bin/echo 'id:5:initdefault:' > /etc/inittab"):
       completeSuccess = False
       print "Setting default init level", "\t[\033[31mFailed\033[0m]"
     else:
@@ -92,88 +93,14 @@ class commandThread(threading.Thread):
         self.success = False
       else:
         self.success = True
-
-class imageThread(threading.Thread):
-  def __init__(self, config):
-    threading.Thread.__init__(self)
-    self.config = config
-    self.success = False
-    self.name = "Image Thread"
-  def run(self):
-    print "Starting an image client"
-    if self.config['debug']:
-      print "Imaged!"
-      self.success = True
-    else:
-      self.success = imageClient.start(self.config)
-    
-def userInput():
-  global response
-  while not response:
-    response = raw_input("")
-
-def passInput():
-  global response
-  while not response:
-    response = getpass.getpass("")
-  
-def enable_echo(fd, enabled):
-  (iflag, oflag, cflag, lflag, ispeed, ospeed, cc) = termios.tcgetattr(fd)
-  if enabled:
-    lflag |= termios.ECHO
-  else:
-    lflag &= ~termios.ECHO
-  new_attr = [iflag, oflag, cflag, lflag, ispeed, ospeed, cc]
-  termios.tcsetattr(fd, termios.TCSANOW, new_attr)
-  
-def prompt(text="", password=False):
-  global response
-  response = ""
-  print "%s:" % text,
-  prompt = None
-  if password:
-    prompt = threading.Thread(target=passInput)
-  else:
-    prompt = threading.Thread(target=userInput)
-  prompt.daemon = True
-  prompt.start()
-  while not response:
-    for i in responseFile:
-      if text in i:
-        answer = i.split(text+":")[1].strip()
-        if answer:
-          prompt.join(0)
-          if not password:
-            print answer
-          enable_echo(sys.stdin.fileno(), True)
-          return answer
-  prompt.join(0)
-  enable_echo(sys.stdin.fileno(), True)
-  return response
     
 def getConfig():
-  import pyudev
-  context = pyudev.Context()
-  monitor = pyudev.Monitor.from_netlink(context)
-  monitor.filter_by('block')
-  mountDir = "/mnt/responseDev"
-  def readResponseFile(action, device):
-    if 'ID_FS_TYPE' in device and action == 'add':
-      print "Found drive..."
-      if not os.path.exists(mountDir):
-        os.makedirs(mountDir)
-      os.system("mount {device} {mountDir}".format(device=device.device_node, mountDir=mountDir))
-      if responseFileName in os.listdir(mountDir):
-        with open(os.path.join(mountDir, responseFileName), "r") as fileHandle:
-          global responseFile
-          responseFile = fileHandle.readlines()
-  observer = pyudev.MonitorObserver(monitor, readResponseFile)
-  observer.start()
+  getInput = advancedInput.HybridListener()
   configNames = ['reboot', 'servername', 'username', 'password', 'debug', 'rpmmode', 'cfengineserver', 'cfengineruntimes']
   print "Please answer the following prompts or insert a flash drive with an answers file named build.conf"
-  configVals = map(prompt, configNames)
+  configVals = map(getInput.prompt, [x+":" for x in configNames])
   config = {}
   config.update(zip(configNames, configVals))
-  observer.stop()
+  getInput.stop()
   return config
 main()

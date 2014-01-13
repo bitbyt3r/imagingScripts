@@ -46,6 +46,10 @@ class ImagingHandler:
       self.clients[sid].status = status
       
     @require_login
+    def setKey(self, sid, pair):
+      self.clients[sid].keyStore[pair[0]] = pair[1]
+      
+    @require_login
     def getStatus(self, sid):
       return dict((y.name,y.status) for x,y in self.clients.iteritems())
     
