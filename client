@@ -1,0 +1,3 @@
+yum install -y partimage python-pyudev udpcast nano
+systemctl stop firewalld.service
+./client.py

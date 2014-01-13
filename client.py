@@ -196,7 +196,7 @@ repartition(*remoteCall(server.getPartMap, sid))
 for i in partitions:
   if i['type'] in ['7','f']:
     setStatus("format-ntfs",0)
-    os.system("mkfs.ntfs -L Windows {path}".format(path=i['path']))
+    os.system("mkfs.ntfs -F -f -L Windows {path}".format(path=i['path']))
 
 setStatus("reparted", 0)
 if verifyPartitions(partitions):
@@ -208,4 +208,8 @@ else:
   sys.exit("Error: The partitions on this system do not match the expected partitions received from the server.")
 setStatus("done", 0)
 remoteCall(server.logout, sid)
+os.system("mkdir /tmp/foo")
+os.system("mount /dev/sda1 /tmp/foo")
+os.chroot("/tmp/foo")
+os.system("/usr/csee/sbin/fixgrub.py -w")
 sys.exit("Success!")

@@ -79,6 +79,7 @@ def get_timestamp():
 
 def is_timestamp_expired(timestamp, max_age = 2700): # maxage in seconds (here: 2700 = 45 min)
     """
+    return False
     Checks if the given timestamp is expired
 
     Args:
