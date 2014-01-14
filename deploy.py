@@ -29,7 +29,7 @@ def main():
   # but you cannot bootstrap cfengine while running it or before it is installed.
   # I take care of that below. Start() will start, and join() will return when
   # finished.
-  image = commandThread("/extra/imaging/client.py", config, name="Windows Imager")
+  image = commandThread("/extra/imaging/client.py Server=%s User=%s Pass=%s" % (config['servername'], config['username'], config['password']), config, name="Windows Imager")
   updaterpmThread = commandThread("/usr/csee/sbin/updaterpm --"+config['rpmmode'], config, name="Updaterpm")
   cfengineBootstrap = commandThread("/var/cfengine/bin/cf-agent -B "+config['cfengineserver'], config, name="Cfengine Bootstrap")
   image.start()
@@ -72,7 +72,7 @@ def main():
     sys.exit(1)
   
 def installReqs():
-  os.system("/bin/cp -r /etc/yum.repos.d.csee/* /etc/yum.repos.d/")
+  os.system("/bin/cp -r /extra/repos/* /etc/yum.repos.d/")
   os.system("/usr/bin/yum install -y udpcast partimage")
   
 class commandThread(threading.Thread):

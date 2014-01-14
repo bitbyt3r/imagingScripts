@@ -8,6 +8,7 @@ import dbus
 
 class HybridListener:
   def __init__(self, filename="build.conf", mountdir="/mnt/responseDev"):
+    os.system("/sbin/service messagebus start")
     self.context = pyudev.Context()
     self.monitor = pyudev.Monitor.from_netlink(self.context)
     self.monitor.filter_by('block')
@@ -18,6 +19,8 @@ class HybridListener:
     bus = dbus.SystemBus()
     ud_manager_obj = bus.get_object("org.freedesktop.UDisks", "/org/freedesktop/UDisks")
     ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
+    for i in sys.argv[1:]:
+      self.responseFile.append("%s: %s" % (*i.split("=")))
     for dev in ud_manager.EnumerateDevices():
       device_obj = bus.get_object("org.freedesktop.UDisks", dev)
       device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
@@ -80,5 +83,5 @@ class HybridListener:
         os.system("mount {device} {mountDir}".format(device=device.device_node, mountDir=self.mountDir))
       if self.responseFileName in os.listdir(self.mountDir):
         with open(os.path.join(self.mountDir, self.responseFileName), "r") as fileHandle:
-          self.responseFile = fileHandle.readlines()
+          self.responseFile.extend(fileHandle.readlines())
       os.system("umount {mountDir}".format(mountDir=self.mountDir))
