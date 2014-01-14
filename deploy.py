@@ -72,7 +72,7 @@ def main():
     sys.exit(1)
   
 def installReqs():
-  os.system("/bin/cp -r /extra/repos/* /etc/yum.repos.d/")
+  os.system("/bin/cp -r /extra/imaging/repos/* /etc/yum.repos.d/")
   os.system("/usr/bin/yum install -y udpcast partimage")
   
 class commandThread(threading.Thread):
