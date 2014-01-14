@@ -1,0 +1,4 @@
+[rhel6w-complete-supplementary-x86_64]
+name=Red Hat Enterprise Client CSEE 6 (x86_64) complete
+baseurl=http://mrepo.cs.umbc.edu/mrepo/rhel6w-complete-x86_64/RPMS.supplementary/
+priority=3

@@ -5,7 +5,10 @@ import threading
 import pyudev
 import getpass
 import dbus
-
+# This module will prompt for user input using either a standard input or a 
+# none-echoing password prompt. It will also search for an answers file 
+# provided on removable storage. It searches for the drive asynchronously,
+# and therefore may fill in a field without a user pressing enter.
 class HybridListener:
   def __init__(self, filename="build.conf", mountdir="/mnt/responseDev"):
     os.system("/sbin/service messagebus start")
