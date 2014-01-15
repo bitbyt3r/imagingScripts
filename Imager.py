@@ -34,6 +34,7 @@ class Imager:
               '--min-receivers',
               str(len(self.batch.clients)),
               '--max-wait 30',
+              '--fec 8x8/64',
               '-f '+partFile,
               '--portbase '+str(self.batch.basePort+self.batch.portOffset),
               '--ttl 2',
