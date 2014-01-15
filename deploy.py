@@ -32,9 +32,9 @@ def main():
   image = commandThread("/extra/imaging/client.py Server=%s User=%s Pass=%s" % (config['servername'], config['username'], config['password']), config, name="Windows Imager")
   updaterpmThread = commandThread("/usr/csee/sbin/updaterpm --"+config['rpmmode'], config, name="Updaterpm")
   cfengineBootstrap = commandThread("/var/cfengine/bin/cf-agent -B "+config['cfengineserver'], config, name="Cfengine Bootstrap")
-  image.start()
-  updaterpmThread.start()
-  updaterpmThread.join()
+  grubThread = commandThread("/usr/csee/sbin/fixgrub.py -w", config, name="fixgrub")
+#  updaterpmThread.start()
+#  updaterpmThread.join()
   cfengineBootstrap.start()
   cfengineBootstrap.join()
   threads.append(image)
@@ -45,6 +45,7 @@ def main():
     cfengineRun.start()
     cfengineRun.join()
     threads.append(cfengineRun)
+  image.start()
   image.join()
     
   completeSuccess = True
@@ -63,9 +64,30 @@ def main():
     else:
       print "Setting default init level", "\t[\033[32m  Ok  \033[0m]"
   if completeSuccess:
+    print "Fixing root's .bashrc"
+    contents = []
+    with open("/root/.bashrc", "r") as rcfile:
+      contents = rcfile.readlines()
+    with open("/root/.bashrc", "w") as rcfile:
+      rcfile.write("".join(contents[:-3]))
+    print "Setting default init level to 5"
+    with open("/boot/grub/menu.lst", "r") as grubfile:
+      contents = grubfile.readlines()
+    for i in contents:
+      i.replace(" single ", " ")
+    with open("/boot/grub/menu.lst", "w") as grubfile:
+      grubfile.write("".join(contents))
+      grubfile.write("title Microsoft Windows 7\n")
+      grubfile.write("\trootnoverify (hd0,2)\n")
+      grubfile.write("\tchainloader +1\n")
+    print "Setting Windows to boot next"
+    grubThread.start()
+    grubThread.join()
+    print "Cleaning /extra"
+    os.system("rm -rf /extra/*")
     print "Everything succeeded!"
     if config['reboot']:
-      commandThread("/sbin/init 6", config, name="restart")
+      rebootThread = commandThread("/sbin/init 6", config, name="restart")
     sys.exit(0)
   else:
     print "Errors occurred during run."

@@ -72,9 +72,9 @@ def cmd(command, getProc=False):
 # done outside of python on purpose, it should not be slowed down by anything.
 def udpCast(partition, serverConfig, statusCallback):
   if partition['type'] in ['7','f']:
-    return not os.system("udp-receiver --portbase {port} --nokbd --ttl 2 2>> /tmp/udp-receiver_stderr | gunzip -c - | tee >(md5sum>{checkfile}) >(ntfsclone -r -O {path} -)".format(port=serverConfig['portbase'], path=partition['path'], checkfile=partition['name']+".checksum"))
+    return not os.system("bash -c \"udp-receiver --portbase {port} --nokbd --ttl 2 2>> /tmp/udp-receiver_stderr | gunzip -c - | tee >(md5sum>{checkfile}) >(ntfsclone -r -O {path} - 1>&2 ) > /dev/null\"".format(port=serverConfig['portbase'], path=partition['path'], checkfile=partition['name']+".checksum"))
   elif partition['type'] in ['83','82']:
-    return not os.system("udp-receiver --portbase {port} --nokbd --ttl 2 2>> /tmp/udp-receiver_stderr | gunzip -c - | tee >(md5sum>{checkfile}) >(partimage -b restore {path} stdin)".format(port=serverConfig['portbase'], path=partition['path'], checkfile=partition['name']+".checksum"))
+    return not os.system("bash -c \"udp-receiver --portbase {port} --nokbd --ttl 2 2>> /tmp/udp-receiver_stderr | gunzip -c - | tee >(md5sum>{checkfile}) >(partimage -b restore {path} stdin 1>&1 ) > /dev/null\"".format(port=serverConfig['portbase'], path=partition['path'], checkfile=partition['name']+".checksum"))
   elif partition['type'] in ['5']:
     return not os.system("mkswap {path}".format(path=partition['path']))
   else:
