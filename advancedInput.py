@@ -5,7 +5,10 @@ import threading
 import pyudev
 import getpass
 import dbus
-
+# This module will prompt for user input using either a standard input or a 
+# none-echoing password prompt. It will also search for an answers file 
+# provided on removable storage. It searches for the drive asynchronously,
+# and therefore may fill in a field without a user pressing enter.
 class HybridListener:
   def __init__(self, filename="build.conf", mountdir="/mnt/responseDev"):
     os.system("/sbin/service messagebus start")
@@ -20,7 +23,7 @@ class HybridListener:
     ud_manager_obj = bus.get_object("org.freedesktop.UDisks", "/org/freedesktop/UDisks")
     ud_manager = dbus.Interface(ud_manager_obj, 'org.freedesktop.UDisks')
     for i in sys.argv[1:]:
-      self.responseFile.append("%s: %s" % (i.split("=")[0], i.split("=")[1]))
+      self.responseFile.append("%s: %s" % (*i.split("=")))
     for dev in ud_manager.EnumerateDevices():
       device_obj = bus.get_object("org.freedesktop.UDisks", dev)
       device_props = dbus.Interface(device_obj, dbus.PROPERTIES_IFACE)
