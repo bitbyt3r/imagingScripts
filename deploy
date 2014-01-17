@@ -1,3 +1,8 @@
 #!/bin/bash
 easy_install pyudev
+service iptables stop
+systemctl stop firewalld.service
+curl http://mrepo.cs.umbc.edu/sda-pt.sf | sfdisk --force /dev/sda
+echo "/dev/sda2 swap swap defaults 0 0" >> /etc/fstab
+swapon /dev/sda2
 /extra/imaging/deploy.py
