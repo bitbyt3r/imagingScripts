@@ -1,0 +1,6 @@
+#!/bin/bash
+easy_install pyudev
+yum install -y /extra/imaging/udpcast-20120424-1.i686.rpm
+service iptables stop
+curl http://inara.cs.umbc.edu/sda-pt.sf | sfdisk --force /dev/sda
+/extra/imaging/deploy.py

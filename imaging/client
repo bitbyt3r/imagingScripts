@@ -1,0 +1,3 @@
+yum install -y partimage python-pyudev udpcast nano
+service iptables stop
+./client.py
