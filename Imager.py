@@ -15,33 +15,31 @@ class Imager:
       i.port = self.batch.basePort
       print "Imaging: %s on port %d" % (i.name, i.port)
     self.readyFunc(self.batch)
-    sleep(5)
-    self.endCallback(self.batch)
-    return
+#    sleep(5)
+#    self.endCallback(self.batch)
+#    return
     for part in self.batch.image.partitions:
       # TODO: Add client monitoring
       partFile = ""
       print part['type']
       if part['type'] == '7':
-        partFile = os.path.join(self.batch.basepath, part['name']+".ntfs-img")
+        partFile = os.path.join(self.batch.basepath, part['name']+".ntfs-img.aa")
       elif part['type'] == '83':
-        partFile = os.path.join(self.batch.basepath, part['name'])
+        partFile = os.path.join(self.batch.basepath, part['name']+".aa")
       else:
         print "Partition type %s is unknown." % part['name']
       udpsendArgs = ['--nopointopoint',
               '--nokbd',
+              '--nopointopoint',
               '--full-duplex',
+              '--max-wait 120',
               '--min-receivers',
               str(len(self.batch.clients)),
-              '--max-wait 30',
-              '--fec 8x8/64',
+              '--log ./log',
+              '--bw-period 2',
               '-f '+partFile,
-              '--portbase '+str(self.batch.basePort+self.batch.portOffset),
-              '--ttl 2',
-              '--log ./udp-sender.'+str(part['name'])+'.log',
-              '--bw-period 30',
-              '> ./udp-sender.'+str(part['name'])+'.stdout',
-              '2> ./udp-sender.'+str(part['name'])+'.stderr',]
+              '--ttl 4',
+              '--portbase '+str(self.batch.basePort+self.batch.portOffset),]
       runstr = ("udp-sender "+" ".join(udpsendArgs))
       print runstr
       os.system(runstr)

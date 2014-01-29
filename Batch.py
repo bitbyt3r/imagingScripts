@@ -1,5 +1,6 @@
 from Image import Image
 from Imager import Imager
+import time
 
 class Batch:
   def __init__(self, config):
@@ -64,6 +65,7 @@ class Batch:
       
   def ready(self, batch):
     for i in batch.clients:
+      time.sleep(3)
       i.start()
       
   def completed(self, batch):

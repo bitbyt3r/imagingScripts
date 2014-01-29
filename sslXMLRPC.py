@@ -78,18 +78,7 @@ def get_timestamp():
     return int(time.time() - EPOCH)
 
 def is_timestamp_expired(timestamp, max_age = 2700): # maxage in seconds (here: 2700 = 45 min)
-    """
     return False
-    Checks if the given timestamp is expired
-
-    Args:
-        timestamp: An integer timestamp
-        max_age  : The maximal allowd age of the timestamp in seconds
-
-    Returns:
-        True if the timestamp is expired or False if the timestamp is valid
-    """
-
     age = get_timestamp() - timestamp
     if age > max_age:
         return True

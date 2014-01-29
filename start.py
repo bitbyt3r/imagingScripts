@@ -11,7 +11,6 @@ def remoteCall(func, *args):
     except xmlrpclib.Fault as e:
         print e
 
-<<<<<<< .mine
 def help():
   print "This utility controls the imaging server."
   print "The command line interface has the following commands:"
@@ -21,9 +20,6 @@ def help():
   print "\tstatus - Retrieves the last status update received from each client"
 
 server = xmlrpclib.ServerProxy("https://rhesus.cs.umbc.edu:2048")
-=======
-server = xmlrpclib.ServerProxy("https://forge.cs.umbc.edu:2048")
->>>>>>> .r245
 sid = remoteCall(server.login, "admin", "wearethebuilders")
 serverCommands = {"run":server.run, "batches":server.getBatches, "clients":server.getClients, "status":server.getStatus}
 localCommands = {"help":help,}
