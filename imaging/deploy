@@ -1,5 +1,0 @@
-#!/bin/bash
-easy_install pyudev
-yum install -y /extra/imaging/udpcast-20120424-1.i686.rpm
-service iptables stop
-/extra/imaging/deploy.py
