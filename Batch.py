@@ -65,7 +65,7 @@ class Batch:
       
   def ready(self, batch):
     for i in batch.clients:
-      time.sleep(3)
+      time.sleep(1)
       i.start()
       
   def completed(self, batch):

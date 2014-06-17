@@ -114,6 +114,7 @@ class ImagingHandler:
                                              "password"  : password,
                                              "last_visit": get_timestamp()}
 
+                print session_id
                 return session_id
 
         raise Fault("unknown username or password", "Please check your username and password")
